@@ -1,6 +1,6 @@
 package com.me.Helicopter.client;
 
-import com.me.Helicopter.Main;
+import com.me.Helicopter.MainGame;
 import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.backends.gwt.GwtApplication;
 import com.badlogic.gdx.backends.gwt.GwtApplicationConfiguration;
@@ -14,6 +14,6 @@ public class GwtLauncher extends GwtApplication {
 
 	@Override
 	public ApplicationListener getApplicationListener () {
-		return new Main();
+		return new MainGame();
 	}
 }

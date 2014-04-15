@@ -9,14 +9,14 @@ import com.badlogic.gdx.graphics.Texture.TextureFilter;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.me.Helicopter.game.worldController;
-import com.me.Helicopter.game.worldRenderer;
+import com.me.Helicopter.game.WorldController;
+import com.me.Helicopter.game.WorldRenderer;
 
 
-public class Main implements ApplicationListener {
+public class MainGame implements ApplicationListener {
 
-	worldController worldController;
-	worldRenderer worldRenderer;
+	WorldController WorldController;
+	WorldRenderer WorldRenderer;
 	@Override
 	public void create() {
 		// TODO Auto-generated method stub

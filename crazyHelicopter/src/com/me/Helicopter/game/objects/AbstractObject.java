@@ -1,5 +1,6 @@
-package com.me.Helicopter.objects;
+package com.me.Helicopter.game.objects;
 
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 
 public abstract class AbstractObject {
@@ -11,6 +12,7 @@ public abstract class AbstractObject {
 	public Vector2 scale;
 	public boolean xFlip;
 	public boolean yFlip;
+	public Rectangle bound; //cai nay set 1 hinh chu nhat bao quanh de phat hien collision
 	
 	
 	public AbstractObject(){
@@ -18,10 +20,12 @@ public abstract class AbstractObject {
 		origin = new Vector2();
 		position = new Vector2();
 		rotation = 0;
+		xFlip = false;
+		xFlip = false;
 		
 	}
 	
 	
-	public abstract void render();
-	public abstract void update();
+	public abstract void render();	// ham nay de ma ve 
+	public abstract void update();	// ham nay de cap xac dinh tao do moi
 }

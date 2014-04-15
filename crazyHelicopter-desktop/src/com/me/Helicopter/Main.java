@@ -7,11 +7,12 @@ import com.badlogic.gdx.tools.imagepacker.TexturePacker2.Settings;
 
 
 public class Main {
+	public static boolean rebuild = true;
+	public static boolean debug 	= true;
 	public static void main(String[] args) {
 		
 		// day la phan tao ra file trong pack		
-		boolean rebuild = true;
-		boolean debug 	= true;
+
 		if(rebuild){
 			Settings settings = new Settings();
 			settings.debug =  debug;
@@ -20,21 +21,13 @@ public class Main {
 			
 			TexturePacker2.process(settings, "assets-raw", "../myGame-android/assets", "myImages");
 			
-		}
-		
-
-		
-		
-		
-		
-		
-		
+		}	
 		LwjglApplicationConfiguration cfg = new LwjglApplicationConfiguration();
 		cfg.title = "crazyHelicopter";
 		cfg.useGL20 = false;
 		cfg.width = 480;
 		cfg.height = 320;
 		
-		new LwjglApplication(new Main(), cfg);
+		new LwjglApplication(new MainGame(), cfg);
 	}
 }

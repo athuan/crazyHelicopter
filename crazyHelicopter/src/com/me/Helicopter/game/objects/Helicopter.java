@@ -1,4 +1,4 @@
-package com.me.Helicopter.objects;
+package com.me.Helicopter.game.objects;
 
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.me.Helicopter.game.Assets;

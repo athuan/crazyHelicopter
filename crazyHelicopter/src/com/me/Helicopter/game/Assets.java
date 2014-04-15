@@ -20,7 +20,9 @@ public class Assets extends Disposer {
 	
 	private Assets(){			// singleton
 		helicopter = new Sprite(atlas.findRegion("helicopter1"));
-		tank  = new Sprite(atlas.findRegion("pack/myImages.atlas"));
+		tank  = new Sprite(atlas.findRegion("tank1"));
+		boom  = new Sprite(atlas.findRegion("boom11"));
+		cannon = new Sprite(atlas.findRegion("cannon1"));
 	}
 	
 	
