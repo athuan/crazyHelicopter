@@ -7,6 +7,11 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 public class WorldRenderer {
 	public SpriteBatch batch;		// co cai nay de dung de ve
-	public 
+	public WorldController worldController;
+	
+	
+	public WorldRenderer(WorldController worldController ){
+		this.worldController = worldController;			// gans bien cho no
+	}
 
 }

@@ -11,7 +11,8 @@ public class Main {
 	public static boolean debug 	= true;
 	public static void main(String[] args) {
 		
-		// day la phan tao ra file trong pack		
+		// day la phan tao ra file trong pack
+		// neu ko muon tao lai va ko muon debug thi cho no la false het
 
 		if(rebuild){
 			Settings settings = new Settings();
