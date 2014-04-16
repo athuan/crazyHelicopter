@@ -7,7 +7,7 @@ import com.badlogic.gdx.tools.imagepacker.TexturePacker2.Settings;
 
 
 public class Main {
-	public static boolean rebuild = true;
+	public static boolean rebuild = false;
 	public static boolean debug 	= true;
 	public static void main(String[] args) {
 		
@@ -20,7 +20,7 @@ public class Main {
 			settings.maxHeight = 1024;
 			settings.maxWidth = 2048;
 			
-			TexturePacker2.process(settings, "assets-raw", "../myGame-android/assets", "myImages");
+			TexturePacker2.process(settings, "assets-raw", "../crazyHelicopter-android/assets/pack", "myImages");
 			
 		}	
 		LwjglApplicationConfiguration cfg = new LwjglApplicationConfiguration();

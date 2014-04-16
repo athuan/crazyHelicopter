@@ -1,5 +1,7 @@
 package com.me.Helicopter;
 
+import sun.awt.windows.WWindowPeer;
+
 import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL10;
@@ -15,11 +17,14 @@ import com.me.Helicopter.game.WorldRenderer;
 
 public class MainGame implements ApplicationListener {
 
-	WorldController WorldController;
-	WorldRenderer WorldRenderer;
+	WorldController worldController;
+	WorldRenderer worldRenderer;
 	@Override
 	public void create() {
-		// TODO Auto-generated method stub
+		// khoi tao cho 2 bien
+		
+		worldController = new WorldController();
+		worldRenderer =  new WorldRenderer(worldController);
 		
 	}
 	@Override
@@ -29,8 +34,7 @@ public class MainGame implements ApplicationListener {
 	}
 	@Override
 	public void render() {
-		// TODO Auto-generated method stub
-		
+		worldRenderer.render();		
 	}
 	@Override
 	public void pause() {

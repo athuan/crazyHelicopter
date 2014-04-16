@@ -1,5 +1,6 @@
 package com.me.Helicopter.game;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 
@@ -19,9 +20,11 @@ public class Assets extends Disposer {
 	
 	
 	private Assets(){			// singleton
+		atlas = new TextureAtlas(Gdx.files.internal("pack/myImages.atlas"));
+		
 		helicopter = new Sprite(atlas.findRegion("helicopter1"));
 		tank  = new Sprite(atlas.findRegion("tank1"));
-		boom  = new Sprite(atlas.findRegion("boom11"));
+		boom  = new Sprite(atlas.findRegion("boom12"));
 		cannon = new Sprite(atlas.findRegion("cannon1"));
 	}
 	
