@@ -21,11 +21,13 @@ public class WorldRenderer {
 		worldController.update();
 		
 		Gdx.gl10.glClear( GL10.GL_COLOR_BUFFER_BIT );	// xoa di bo dem
-		Gdx.gl10.glClearColor(0, 0, 0.8f, 0);
+		Gdx.gl10.glClearColor(1, 1, 1, 0);
 		
 		batch.begin();
-		Assets.instance.backGround.draw(batch);
+		
+		//Assets.instance.backGround.draw(batch);		// load background
 		worldController.helicopter.render(batch);
+		
 		batch.end();
 		
 	}

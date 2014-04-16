@@ -17,6 +17,7 @@ public class Bomb extends AbstractObject {
 	public void update() {		// ham nay de tinh toan qua boom khi duoc goi thi no se roi(cap nhat vi tri roi)
 		if( this.bomb.getY() >0 ){
 			bomb.setPosition(bomb.getX() ,bomb.getY() - 1);
+			
 		}
 		
 	}
