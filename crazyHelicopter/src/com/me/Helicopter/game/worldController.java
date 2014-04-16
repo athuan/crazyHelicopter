@@ -17,15 +17,15 @@ import com.me.Helicopter.game.objects.Tank;
 
 public class WorldController {
 	public Helicopter helicopter;	// 1 doi tuong may bay
-	public Bomb boom;
+	public Bomb bomb;
 	public Array<Tank> tanks; 		// tao ra 1 mang cac tank de quan ly cac tank duoc tao ra
-	public Array<Bomb> booms;		// 1 mang de chua cac boom
+	public Array<Bomb> bombs;		// 1 mang de chua cac boom
 	
 	
 	public WorldController(){		// khoi tao het cho bon no
 		helicopter = new Helicopter();
 		tanks = new Array<Tank>();
-		booms = new Array<Bomb>();
+		bombs = new Array<Bomb>();
 	}
 	
 	public void update(){		// cap nhat tat ca cac thay doi cho game
@@ -33,10 +33,10 @@ public class WorldController {
 							// chi goi update cua cac phan tu con ma thoi
 		helicopter.update();	
 		if(Gdx.input.isKeyPressed(Keys.SPACE)){		// neu nhu goi lenh tha boom
-			boom = new Bomb();						// tao ra 1 doi tuong la boom
-			booms.add(boom);
-			boom.bomb.setPosition(helicopter.heli.getX(), helicopter.heli.getY());
-			boom.update();							// cho no tinh toan de no tu roi
+			bomb = new Bomb();						// tao ra 1 doi tuong la boom
+			bombs.add(bomb);
+			bomb.setPosition(helicopter.heli.getX(), helicopter.heli.getY());
+			bomb.update();							// cho no tinh toan de no tu roi
 		}
 	}
 	

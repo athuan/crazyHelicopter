@@ -22,8 +22,7 @@ public abstract class AbstractObject {
 		position = new Vector2();
 		rotation = 0;
 		xFlip = false;
-		xFlip = false;
-		
+		xFlip = false;		
 	}
 	
 	

@@ -13,8 +13,10 @@ public class Assets extends Disposer {
 	TextureAtlas atlas;			// lay tai nguyen ty nguon
 	public final Sprite helicopter;			//
 	public final Sprite tank;				
-	public final Sprite boom;
+	public final Sprite bomb;
 	public final Sprite cannon;
+	public final Sprite backGround;
+	
 	
 	
 	
@@ -24,8 +26,9 @@ public class Assets extends Disposer {
 		
 		helicopter = new Sprite(atlas.findRegion("helicopter1"));
 		tank  = new Sprite(atlas.findRegion("tank1"));
-		boom  = new Sprite(atlas.findRegion("boom12"));
+		bomb  = new Sprite(atlas.findRegion("bomb12"));
 		cannon = new Sprite(atlas.findRegion("cannon1"));
+		backGround = new Sprite(atlas.findRegion("background1"));
 	}
 	
 	
