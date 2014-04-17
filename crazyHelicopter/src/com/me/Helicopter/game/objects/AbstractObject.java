@@ -15,6 +15,11 @@ public abstract class AbstractObject {
 	public boolean yFlip;
 	public Rectangle bound; //cai nay set 1 hinh chu nhat bao quanh de phat hien collision
 	
+	// bo sung them 2 bien nua nhe
+	
+	public Vector2 velocity;		// bien van toc
+	public float acceleration;			// bien gai toc
+	
 	
 	public AbstractObject(){
 		dimension = new Vector2();
@@ -22,7 +27,9 @@ public abstract class AbstractObject {
 		position = new Vector2();
 		rotation = 0;
 		xFlip = false;
-		xFlip = false;		
+		xFlip = false;
+		velocity= new Vector2(0,0);
+		acceleration = 0;
 	}
 	
 	

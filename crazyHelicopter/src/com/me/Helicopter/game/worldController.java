@@ -36,8 +36,19 @@ public class WorldController {
 			bomb = new Bomb();						// tao ra 1 doi tuong la boom
 			bombs.add(bomb);
 			bomb.setPosition(helicopter.heli.getX(), helicopter.heli.getY());
-			bomb.update();							// cho no tinh toan de no tu roi
+			// cho no tinh toan de no tu roi
 		}
+		// duyet qua tat ca cac bomb 
+		
+		for (Bomb xBomb : bombs) {
+			if(!xBomb.isLive() ){	// kiem tra xem no co con duoc suat hien tren man hinh khong
+				bombs.removeValue(xBomb, false);
+				
+			}else{
+				xBomb.update();
+			}	
+		}
+		
 	}
 	
 	

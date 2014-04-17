@@ -27,6 +27,8 @@ public class Helicopter extends AbstractObject{
 		this.position.set(0,100);
 		xPos=0;
 		yPos=0;
+		velocity.x =3;
+		velocity.y =0;
 		
 	}
 	
@@ -34,11 +36,17 @@ public class Helicopter extends AbstractObject{
 
 	@Override
 	public void update() {
-
+		////// DI CHUYEN CUA MAY BAY
 		if( Gdx.input.isTouched() ){
 			xPos = Gdx.input.getX() - heli.getX();
 			yPos = Gdx.input.getY() - heli.getY();
 		}
+		if( heli.getX() > Gdx.graphics.getWidth() ){
+			heli.setX(-100);
+		}
+		//if( heli.getX() < 0 ){
+		//	heli.setX(Gdx.graphics.getWidth() + 100);
+		//}
 		if( xPos ==0 ){
 			xPos=1;
 		}else if(xPos > 0) {
@@ -51,13 +59,15 @@ public class Helicopter extends AbstractObject{
 		}
 		if(count < 7){
 			count++;
-			heli.setPosition(heli.getX() + xPos/Math.abs(xPos), 500);
+			heli.setPosition(heli.getX() + velocity.x*xPos/Math.abs(xPos), 500);
 		}else if( count>=7 && count<14) {
 			count++;
-			heli.setPosition(heli.getX() + xPos/Math.abs(xPos) , 505);
+			heli.setPosition(heli.getX() + velocity.x*xPos/Math.abs(xPos) , 505);
 		}else{
 			count=0;
 		}
+		////////////////////////////////////////////////
+		
 		
 	}
 
