@@ -49,10 +49,10 @@ public class Helicopter extends AbstractObject{
 			heli1.setPosition(heli.getX(), heli.getY());
 			heli = heli1;
 		}
-		if(count < 8){
+		if(count < 7){
 			count++;
 			heli.setPosition(heli.getX() + xPos/Math.abs(xPos), 500);
-		}else if( count>=8 && count<16) {
+		}else if( count>=7 && count<14) {
 			count++;
 			heli.setPosition(heli.getX() + xPos/Math.abs(xPos) , 505);
 		}else{
