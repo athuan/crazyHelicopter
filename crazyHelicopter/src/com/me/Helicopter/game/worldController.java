@@ -52,28 +52,12 @@ public class WorldController {
 		
 		
 		if(Gdx.input.isKeyPressed(Keys.SPACE)){		// neu nhu goi lenh tha boom
-<<<<<<< HEAD
 			level.bomb = new Bomb();						// tao ra 1 doi tuong la boom
 			level.bombs.add(level.bomb);
 			level.bomb.setPosition(level.helicopter.heli.getX(), level.helicopter.heli.getY());
 			level.bomb.update();							// cho no tinh toan de no tu roi
-=======
-			bomb = new Bomb();						// tao ra 1 doi tuong la boom
-			bombs.add(bomb);
-			bomb.setPosition(helicopter.heli.getX(), helicopter.heli.getY());
-			// cho no tinh toan de no tu roi
->>>>>>> d15812ef1d51d6ad27cd9a0af8f0e51098570ef9
 		}
 		// duyet qua tat ca cac bomb 
-		
-		for (Bomb xBomb : bombs) {
-			if(!xBomb.isLive() ){	// kiem tra xem no co con duoc suat hien tren man hinh khong
-				bombs.removeValue(xBomb, false);
-				
-			}else{
-				xBomb.update();
-			}	
-		}
 		
 	}
 	
