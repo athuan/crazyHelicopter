@@ -10,13 +10,14 @@ public class Bomb extends AbstractObject {
 	
 	public Bomb(){
 		bomb = new Sprite(Assets.instance.bomb);
+		velocity.y = 5;
 	}
 
 
 	@Override
 	public void update() {		// ham nay de tinh toan qua boom khi duoc goi thi no se roi(cap nhat vi tri roi)
 		if( this.bomb.getY() >0 ){
-			bomb.setPosition(bomb.getX() ,bomb.getY() - 1);
+			bomb.setPosition(bomb.getX() ,bomb.getY() - velocity.y);
 			
 		}
 		
@@ -30,7 +31,17 @@ public class Bomb extends AbstractObject {
 	}
 	
 	public void setPosition(float x, float y){			// set vi tri cua sprite boom
-		this.bomb.setPosition(x, y);	
+		bomb.setPosition(x, y);	
+	}
+
+
+	public boolean isLive() {
+		if( bomb.getY() <0 ){
+			
+			return false;
+		}
+			
+		return true;
 	}
 
 
