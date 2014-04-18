@@ -3,6 +3,7 @@ package com.me.Helicopter.game.objects;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.utils.Disposable;
 
 public abstract class AbstractObject {
 	
@@ -28,4 +29,5 @@ public abstract class AbstractObject {
 	
 	public abstract void render(SpriteBatch batch);	// ham nay de ma ve 
 	public abstract void update();	// ham nay de cap xac dinh tao do moi
+	public abstract void afterCollision();
 }

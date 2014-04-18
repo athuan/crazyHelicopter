@@ -68,6 +68,14 @@ public class Helicopter extends AbstractObject{
 		heli.draw(batch);
 		
 	}
+
+
+
+	@Override
+	public void afterCollision() {
+		// TODO Auto-generated method stub
+		
+	}
 	
 
 }

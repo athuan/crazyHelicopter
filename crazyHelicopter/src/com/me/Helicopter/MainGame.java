@@ -13,6 +13,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.me.Helicopter.game.WorldController;
 import com.me.Helicopter.game.WorldRenderer;
+import com.me.Helicopter.game.objects.Bullet;
 
 
 public class MainGame implements ApplicationListener {
@@ -48,7 +49,7 @@ public class MainGame implements ApplicationListener {
 	}
 	@Override
 	public void dispose() {
-		// TODO Auto-generated method stub
+
 		
 	}
 

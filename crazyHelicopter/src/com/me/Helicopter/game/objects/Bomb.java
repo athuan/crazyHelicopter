@@ -34,5 +34,12 @@ public class Bomb extends AbstractObject {
 	}
 
 
+	@Override
+	public void afterCollision() {
+		// TODO Auto-generated method stub
+		
+	}
+
+
 
 }

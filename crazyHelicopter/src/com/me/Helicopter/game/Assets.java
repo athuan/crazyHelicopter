@@ -16,7 +16,7 @@ public class Assets extends Disposer {
 	public final Sprite bomb;
 	public final Sprite cannon;
 	public final Sprite backGround;
-	
+	public final Sprite bullet;
 	
 	
 	
@@ -29,6 +29,7 @@ public class Assets extends Disposer {
 		bomb  = new Sprite(atlas.findRegion("bomb12"));
 		cannon = new Sprite(atlas.findRegion("cannon1"));
 		backGround = new Sprite(atlas.findRegion("background1"));
+		bullet = new Sprite(atlas.findRegion("bomb11"));
 	}
 	
 	
