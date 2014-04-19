@@ -1,6 +1,8 @@
 package com.me.Helicopter.game;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Music;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 
@@ -17,6 +19,8 @@ public class Assets extends Disposer {
 	public final Sprite cannon;
 	public final Sprite backGround;
 	public final Sprite bullet;
+	public final Music boomboom;
+	public final Sound heli;
 	
 	
 	
@@ -26,10 +30,12 @@ public class Assets extends Disposer {
 		
 		helicopter = new Sprite(atlas.findRegion("helicopter1"));
 		tank  = new Sprite(atlas.findRegion("tank1"));
-		bomb  = new Sprite(atlas.findRegion("bomb12"));
+		bomb  = new Sprite(atlas.findRegion("bomb14"));
 		cannon = new Sprite(atlas.findRegion("cannon1"));
 		backGround = new Sprite(atlas.findRegion("background1"));
 		bullet = new Sprite(atlas.findRegion("bomb11"));
+		boomboom = Gdx.audio.newMusic(Gdx.files.internal("sounds/boom.mp3"));
+		heli = Gdx.audio.newSound(Gdx.files.internal("sounds/heli3.wav"));
 	}
 	
 	
