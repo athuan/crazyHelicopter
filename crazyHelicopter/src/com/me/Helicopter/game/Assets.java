@@ -8,7 +8,7 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 
 import sun.java2d.Disposer;
 
-public class Assets extends Disposer {
+public class Assets {
 	
 	public static final Assets instance= new Assets();	// single ton
 	// khai bao tat ca cac thu can thiet
@@ -19,7 +19,7 @@ public class Assets extends Disposer {
 	public final Sprite cannon;
 	public final Sprite backGround;
 	public final Sprite bullet;
-	public final Music boomboom;
+	public final Sound boomboom;
 	public final Sound heli;
 	
 	
@@ -30,11 +30,11 @@ public class Assets extends Disposer {
 		
 		helicopter = new Sprite(atlas.findRegion("helicopter1"));
 		tank  = new Sprite(atlas.findRegion("tank1"));
-		bomb  = new Sprite(atlas.findRegion("bomb14"));
+		bomb  = new Sprite(atlas.findRegion("bomb11"));
 		cannon = new Sprite(atlas.findRegion("cannon1"));
 		backGround = new Sprite(atlas.findRegion("background1"));
 		bullet = new Sprite(atlas.findRegion("bomb11"));
-		boomboom = Gdx.audio.newMusic(Gdx.files.internal("sounds/boom.mp3"));
+		boomboom = Gdx.audio.newSound(Gdx.files.internal("sounds/rocket.wav"));
 		heli = Gdx.audio.newSound(Gdx.files.internal("sounds/heli3.wav"));
 	}
 	

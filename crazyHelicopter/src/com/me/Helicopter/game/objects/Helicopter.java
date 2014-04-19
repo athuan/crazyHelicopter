@@ -27,7 +27,7 @@ public class Helicopter extends AbstractObject{
 		this.position.set(0,100);
 		xPos=0;
 		yPos=0;
-		velocity.x =3;
+		velocity.x =2;
 		velocity.y =0;
 		Assets.instance.heli.play();
 		Assets.instance.heli.loop();

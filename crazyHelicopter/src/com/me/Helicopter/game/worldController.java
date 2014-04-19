@@ -1,6 +1,7 @@
 package com.me.Helicopter.game;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.utils.Array;
@@ -17,7 +18,7 @@ import com.me.Helicopter.game.objects.Tank;
 
 
 
-public class WorldController {
+public class WorldController extends InputAdapter {
 	public Helicopter helicopter;	// 1 doi tuong may bay
 	public Bomb bomb;
 	public Tank tank;
@@ -41,6 +42,7 @@ public class WorldController {
 		tanks = new Array<Tank>();
 		bombs = new Array<Bomb>();
 		deltaTime = System.currentTimeMillis();
+		addTank();
 
 	}
 	
@@ -67,12 +69,13 @@ public class WorldController {
 		
 		
 		if(Gdx.input.isKeyPressed(Keys.SPACE)){		// neu nhu goi lenh tha boom
-			if( System.currentTimeMillis() -  deltaTime >60){
+			if( System.currentTimeMillis() -  deltaTime > 200){
 				bomb = new Bomb();						// tao ra 1 doi tuong la boom
 				bombs.add(bomb);
 				bomb.setPosition(helicopter.heli.getX() + helicopter.heli.getWidth()/2, helicopter.heli.getY() -5);
 				deltaTime = System.currentTimeMillis();
 				demBom++;
+				Assets.instance.boomboom.play();
 				
 				System.out.println("So boom : " + bombs.size);
 				
@@ -82,7 +85,7 @@ public class WorldController {
 		for (Bomb xbomb: bombs) {
 			if(!xbomb.isLive()){
 				bombs.removeValue(xbomb, true);
-				Assets.instance.boomboom.play();
+				
 				System.out.println("So boom : " + bombs.size);
 			}else{
 				xbomb.update();
@@ -97,6 +100,7 @@ public class WorldController {
 		for (Bullet b : bullets) {
 			if(b.bullet.getBoundingRectangle().overlaps(helicopter.heli.getBoundingRectangle())){
 				b.afterCollision();
+				
 				helicopter.afterCollision();
 			}
 		}
@@ -134,6 +138,12 @@ public class WorldController {
 				}
 			}
 		}
+	}
+	public void addTank(){
+		tank = new Tank();
+		tanks.add(tank);
+		tank = new Tank();
+		tanks.add(tank);
 	}
 	
 }
