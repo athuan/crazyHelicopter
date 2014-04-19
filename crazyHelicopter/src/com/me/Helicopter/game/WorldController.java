@@ -35,6 +35,8 @@ public class WorldController extends InputAdapter {
 	public int demBom=0;
 	public Music boomboom;
 	
+	//
+	Public 
 	
 	public WorldController(){		// khoi tao het cho bon no
 		helicopter = new Helicopter();

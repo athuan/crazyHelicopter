@@ -1,6 +1,5 @@
 package com.me.Helicopter.game;
 
-import sun.net.www.content.audio.x_aiff;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL10;
