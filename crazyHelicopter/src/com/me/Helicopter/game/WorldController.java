@@ -1,14 +1,14 @@
 package com.me.Helicopter.game;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.Input.Keys;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.utils.Array;
 import com.me.Helicopter.game.objects.Bomb;
 import com.me.Helicopter.game.objects.Bullet;
-import com.me.Helicopter.game.objects.Cannon;
 import com.me.Helicopter.game.objects.Helicopter;
 import com.me.Helicopter.game.objects.Tank;
-import com.me.Helicopter.game.Level;
 
 // tat ca cac doi tuong co trong game deu duoc khai bao va su dung tai day, no chiu trach nhiem 
 // xu ly tat ca nhung tuong tac vv
@@ -18,18 +18,33 @@ import com.me.Helicopter.game.Level;
 
 
 
-public class WorldController {
-	public Level level;
+public class WorldController extends InputAdapter {
+	public Helicopter helicopter;	// 1 doi tuong may bay
+	public Bomb bomb;
+	public Tank tank;
+	public Bullet bullet;
+	public Array<Bullet> bullets;
+	public Array<Tank> tanks; 		// tao ra 1 mang cac tank de quan ly cac tank duoc tao ra
+	public Array<Bomb> bombs;
 	
 	public long timePress = 550l; // khoang thoi gian giua cac lan ban
 	public long BulletPressTime;  // bien nay de luu moc thoi gian khi ban 
+	public long deltaTime;
 	
-	public float timeDelay;
 	
+	// bien danh cho debug
+	public int demBom=0;
+	public Music boomboom;
+	
+	//
 	
 	public WorldController(){		// khoi tao het cho bon no
-		level = new Level();
-		timeDelay = 30;
+		helicopter = new Helicopter();
+		bullets = new Array<Bullet>();
+		tanks = new Array<Tank>();
+		bombs = new Array<Bomb>();
+		deltaTime = System.currentTimeMillis();
+		addTank();
 	}
 	
 	public void update(){		// cap nhat tat ca cac thay doi cho game
@@ -37,13 +52,13 @@ public class WorldController {
 							// chi goi update cua cac phan tu con ma thoi
 		checkCollision();
 		
-		level.helicopter.update();
+		helicopter.update();
 		
 		tankShotBullet();
 		
-		for (Bullet b : level.bullets) {
+		for (Bullet b : bullets) {
 			if(b.bullet.getY() < 20){
-				level.bullets.removeValue(b, true);
+				bullets.removeValue(b, true);
 			}
 			else{
 				b.update();
@@ -55,34 +70,45 @@ public class WorldController {
 		
 		
 		if(Gdx.input.isKeyPressed(Keys.SPACE)){		// neu nhu goi lenh tha boom
-			level.bomb = new Bomb();						// tao ra 1 doi tuong la boom
-			level.bombs.add(level.bomb);
-			level.bomb.setPosition(level.helicopter.heli.getX(), level.helicopter.heli.getY());
-			level.bomb.update();							// cho no tinh toan de no tu roi
+			if( System.currentTimeMillis() -  deltaTime > 200){
+				bomb = new Bomb();						// tao ra 1 doi tuong la boom
+				bombs.add(bomb);
+				bomb.setPosition(helicopter.heli.getX() + helicopter.heli.getWidth()/2, helicopter.heli.getY() -5);
+				deltaTime = System.currentTimeMillis();
+				demBom++;
+				Assets.instance.boomboom.play();
+				
+				System.out.println("So boom : " + bombs.size);
+				
+			}
 		}
 		// duyet qua tat ca cac bomb 
+		for (Bomb xbomb: bombs) {
+			if(!xbomb.isLive()){
+				bombs.removeValue(xbomb, true);
+				
+				System.out.println("So boom : " + bombs.size);
+			}else{
+				xbomb.update();
+			}
+			
+		}
 		
 	}
 	
 	public void checkCollision(){
 		// Check bullet collision with helicopter
-		for (Bullet b : level.bullets) {
-			if(b.bullet.getBoundingRectangle().overlaps(level.helicopter.heli.getBoundingRectangle())){
-				//timeDelay= 300;
+		for (Bullet b : bullets) {
+			if(b.bullet.getBoundingRectangle().overlaps(helicopter.heli.getBoundingRectangle())){
 				b.afterCollision();
 				
-				level.helicopter.afterCollision();
-//				timeDelay--;
-//				if(timeDelay < 0){
-					level.bullets.removeValue(b, true);
-//				}
-				
+				helicopter.afterCollision();
 			}
 		}
 		// Check bomb collision with tank and cannon
-		for (Bomb bom : level.bombs) {
+		for (Bomb bom : bombs) {
 			// bomb collision with tank
-			for( Tank t : level.tanks){
+			for( Tank t : tanks){
 				if(bom.bomb.getBoundingRectangle().overlaps(t.tank.getBoundingRectangle())){
 					bom.afterCollision();
 					t.afterCollision();
@@ -94,16 +120,16 @@ public class WorldController {
 	}
 	
 	public void tankShotBullet(){
-		for (Tank t : level.tanks) {
+		for (Tank t : tanks) {
 			t.update();
 			if(t.shot()){		
 				if(!t.getIsShot()){
 					BulletPressTime = System.currentTimeMillis();
 					t.setShot(true);
 	
-					level.bullet = new Bullet();
-					level.bullets.add(level.bullet);
-					level.bullet.setPositionBullet(t.tank.getX(), t.tank.getY() );
+					bullet = new Bullet();
+					bullets.add(bullet);
+					bullet.setPositionBullet(t.tank.getX(), t.tank.getY() );
 					//System.out.println("BulletTime" + BulletPressTime);
 				}
 				else{
@@ -113,6 +139,12 @@ public class WorldController {
 				}
 			}
 		}
+	}
+	public void addTank(){
+		tank = new Tank();
+		tanks.add(tank);
+		tank = new Tank();
+		tanks.add(tank);
 	}
 	
 }

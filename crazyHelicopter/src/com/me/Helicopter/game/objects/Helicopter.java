@@ -29,6 +29,9 @@ public class Helicopter extends AbstractObject{
 		yPos=0;
 		velocity.x =2;
 		velocity.y =0;
+		Assets.instance.heli.play();
+		Assets.instance.heli.loop();
+		
 		
 	}
 	
@@ -41,12 +44,12 @@ public class Helicopter extends AbstractObject{
 			xPos = Gdx.input.getX() - heli.getX();
 			yPos = Gdx.input.getY() - heli.getY();
 		}
-		if( heli.getX() > Gdx.graphics.getWidth() ){
-			heli.setX(-100);
+		if( heli.getX() > Gdx.graphics.getWidth() +50 ){
+			heli.setX(-50);
 		}
-		//if( heli.getX() < 0 ){
-		//	heli.setX(Gdx.graphics.getWidth() + 100);
-		//}
+		if( heli.getX() < -50 ){
+			heli.setX(Gdx.graphics.getWidth() + 50);
+		}
 		if( xPos ==0 ){
 			xPos=1;
 		}else if(xPos > 0) {
