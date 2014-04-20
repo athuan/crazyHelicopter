@@ -65,8 +65,6 @@ public class WorldController extends InputAdapter {
 			}
 			
 		}
-		//System.out.println("Bullets size: " + bullets.size);
-		
 		
 		
 		if(Gdx.input.isKeyPressed(Keys.SPACE)){		// neu nhu goi lenh tha boom
