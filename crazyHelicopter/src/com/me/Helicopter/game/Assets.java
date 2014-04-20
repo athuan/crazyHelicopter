@@ -16,12 +16,14 @@ public class Assets {
 	public final Sprite helicopter;			//
 	public final Sprite tank;				
 	public final Sprite bomb;
-	public final Sprite cannon;
 	public final Sprite backGround;
 	public final Sprite bullet;
 	public final Sound boomboom;
 	public final Sound heli;
-	
+	//cannon and rocket
+	public final Sprite cannon;
+	public final Sprite rocket;
+	public final Sprite fire;
 	
 	
 	
@@ -31,11 +33,14 @@ public class Assets {
 		helicopter = new Sprite(atlas.findRegion("helicopter1"));
 		tank  = new Sprite(atlas.findRegion("tank1"));
 		bomb  = new Sprite(atlas.findRegion("bomb11"));
-		cannon = new Sprite(atlas.findRegion("cannon1"));
 		backGround = new Sprite(atlas.findRegion("background1"));
 		bullet = new Sprite(atlas.findRegion("bomb11"));
 		boomboom = Gdx.audio.newSound(Gdx.files.internal("sounds/rocket.wav"));
 		heli = Gdx.audio.newSound(Gdx.files.internal("sounds/heli3.wav"));
+		//cannon and rocket
+		cannon = new Sprite(atlas.findRegion("cannon1"));
+		rocket = new Sprite(atlas.findRegion("bomb21"));
+		fire = new Sprite(atlas.findRegion("fire"));
 	}
 	
 	

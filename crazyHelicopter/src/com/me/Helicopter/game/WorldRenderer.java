@@ -6,6 +6,8 @@ import com.badlogic.gdx.graphics.GL10;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.me.Helicopter.game.objects.Bomb;
 import com.me.Helicopter.game.objects.Bullet;
+import com.me.Helicopter.game.objects.Cannon;
+import com.me.Helicopter.game.objects.Rocket;
 import com.me.Helicopter.game.objects.Tank;
 
 // no se chi chua SpriteBatch de ve ra man hinh va 1 cai worldControll
@@ -43,6 +45,18 @@ public class WorldRenderer {
 		for (Bomb xBomb : worldController.bombs) {
 			xBomb.render(batch);
 		}
+		
+		//cannon and boom
+		for (Cannon ca : worldController.cannons) {
+			ca.render(batch);
+		}
+		for(Rocket rk : worldController.rockets1){
+			rk.render(batch);
+		}
+		for(Rocket rk : worldController.rockets2){
+			rk.render(batch);
+		}
+		
 		
 		batch.end();
 		
