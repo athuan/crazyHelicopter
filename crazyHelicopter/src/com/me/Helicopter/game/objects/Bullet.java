@@ -55,13 +55,7 @@ public class Bullet extends AbstractObject {
 
 	@Override
 	public void afterCollision() {
-		//bullet.scale(10);
-		//bullet.rotate(90);
-		//Vector2 pos = new Vector2(bullet.getX(), bullet.getY());
-		//bullet = new Sprite(Assets.instance.bulletDie);
-		//bullet.setPosition(pos.x, pos.y);
 		bullet.setRegion(Assets.instance.bulletDeath);
-		bullet.scale(15f);
 		
 	}
 	
