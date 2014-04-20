@@ -1,5 +1,6 @@
 package com.me.Helicopter.game;
 
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL10;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -28,18 +29,21 @@ public class WorldRenderer {
 		
 		batch.begin();
 		
-		//Assets.instance.backGround.draw(batch);		// load background
-		worldController.level.helicopter.render(batch);
-		for (Tank tank : worldController.level.tanks) {
+
+		//Assets.instance.backGround.draw(batch)	// load background
+
+		worldController.helicopter.render(batch);
+		for (Tank tank : worldController.tanks) {
 			tank.render(batch);
 		}
 		
-		for (Bullet bullet : worldController.level.bullets) {
+		for (Bullet bullet : worldController.bullets) {
 			bullet.render(batch);
 		}
 		
-		for (Bomb bomb : worldController.level.bombs) {
-			bomb.render(batch);
+
+		for (Bomb xBomb : worldController.bombs) {
+			xBomb.render(batch);
 		}
 		
 		batch.end();

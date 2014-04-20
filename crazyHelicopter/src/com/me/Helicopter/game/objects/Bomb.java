@@ -7,20 +7,19 @@ import com.me.Helicopter.game.Assets;
 public class Bomb extends AbstractObject {
 	
 	public Sprite bomb;
-	
+	public float time;
 	public Bomb(){
 		bomb = new Sprite(Assets.instance.bomb);
-		velocity.y = 5;
+		velocity.y = 1;
+		acceleration = 10;
+		time = 0;
 	}
 
 
 	@Override
 	public void update() {		// ham nay de tinh toan qua boom khi duoc goi thi no se roi(cap nhat vi tri roi)
-		if( this.bomb.getY() >0 ){
-			bomb.setPosition(bomb.getX() ,bomb.getY() - velocity.y);
-			
-		}
-		
+		bomb.setPosition(bomb.getX() ,bomb.getY() - (velocity.y + acceleration * time) );
+		time += 0.01f;
 	}
 	
 
@@ -36,8 +35,7 @@ public class Bomb extends AbstractObject {
 
 
 	public boolean isLive() {
-		if( bomb.getY() <0 ){
-			
+		if( bomb.getY() <10 ){	
 			return false;
 		}
 			

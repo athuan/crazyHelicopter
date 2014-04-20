@@ -61,7 +61,7 @@ public class Bullet extends AbstractObject {
 		//bullet = new Sprite(Assets.instance.bulletDie);
 		//bullet.setPosition(pos.x, pos.y);
 		bullet.setRegion(Assets.instance.bulletDeath);
-		bullet.scale(15f);
+		//bullet.scale(15f);
 		
 	}
 	
