@@ -24,9 +24,12 @@ public class WorldController {
 	public long timePress = 550l; // khoang thoi gian giua cac lan ban
 	public long BulletPressTime;  // bien nay de luu moc thoi gian khi ban 
 	
+	public float timeDelay;
+	
 	
 	public WorldController(){		// khoi tao het cho bon no
 		level = new Level();
+		timeDelay = 30;
 	}
 	
 	public void update(){		// cap nhat tat ca cac thay doi cho game
@@ -39,7 +42,7 @@ public class WorldController {
 		tankShotBullet();
 		
 		for (Bullet b : level.bullets) {
-			if(b.bullet.getY() > 600){
+			if(b.bullet.getY() < 20){
 				level.bullets.removeValue(b, true);
 			}
 			else{
@@ -65,8 +68,15 @@ public class WorldController {
 		// Check bullet collision with helicopter
 		for (Bullet b : level.bullets) {
 			if(b.bullet.getBoundingRectangle().overlaps(level.helicopter.heli.getBoundingRectangle())){
+				//timeDelay= 300;
 				b.afterCollision();
+				
 				level.helicopter.afterCollision();
+//				timeDelay--;
+//				if(timeDelay < 0){
+					level.bullets.removeValue(b, true);
+//				}
+				
 			}
 		}
 		// Check bomb collision with tank and cannon

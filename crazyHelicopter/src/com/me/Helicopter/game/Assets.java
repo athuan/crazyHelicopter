@@ -1,8 +1,11 @@
 package com.me.Helicopter.game;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas.AtlasRegion;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
 import sun.java2d.Disposer;
 
@@ -18,6 +21,8 @@ public class Assets extends Disposer {
 	public final Sprite backGround;
 	public final Sprite bullet;
 	
+	public final Sprite bulletDie;
+	public final AtlasRegion bulletDeath;
 	
 	
 	
@@ -30,6 +35,8 @@ public class Assets extends Disposer {
 		cannon = new Sprite(atlas.findRegion("cannon1"));
 		backGround = new Sprite(atlas.findRegion("background1"));
 		bullet = new Sprite(atlas.findRegion("bomb11"));
+		bulletDie = new Sprite(atlas.findRegion("bomb13"));
+		bulletDeath = atlas.findRegion("fire");
 	}
 	
 	
