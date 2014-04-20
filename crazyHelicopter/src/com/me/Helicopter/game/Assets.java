@@ -21,6 +21,8 @@ public class Assets {
 	public final Sprite bullet;
 	public final Sound boomboom;
 	public final Sound heli;
+	public final Sprite bird;
+	public final Sprite helper;	
 	
 	
 	
@@ -36,6 +38,8 @@ public class Assets {
 		bullet = new Sprite(atlas.findRegion("bomb11"));
 		boomboom = Gdx.audio.newSound(Gdx.files.internal("sounds/rocket.wav"));
 		heli = Gdx.audio.newSound(Gdx.files.internal("sounds/heli3.wav"));
+		bird = new Sprite(atlas.findRegion("bomb21"));
+		helper = new Sprite(atlas.findRegion("helicopter1"));
 	}
 	
 	

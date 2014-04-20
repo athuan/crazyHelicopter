@@ -32,6 +32,8 @@ public class WorldRenderer {
 		//Assets.instance.backGround.draw(batch)	// load background
 
 		worldController.helicopter.render(batch);
+		worldController.bird.render(batch);
+		worldController.helper.render(batch);
 		for (Tank tank : worldController.tanks) {
 			tank.render(batch);
 		}
