@@ -4,11 +4,8 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL10;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.me.Helicopter.game.objects.Bomb;
-<<<<<<< HEAD
 import com.me.Helicopter.game.objects.Bullet;
 import com.me.Helicopter.game.objects.Tank;
-=======
->>>>>>> d15812ef1d51d6ad27cd9a0af8f0e51098570ef9
 
 // no se chi chua SpriteBatch de ve ra man hinh va 1 cai worldControll
 // sau do thuc hien ve ra man hinh sau khi da update moi thu
@@ -32,7 +29,6 @@ public class WorldRenderer {
 		batch.begin();
 		
 		//Assets.instance.backGround.draw(batch);		// load background
-<<<<<<< HEAD
 		worldController.level.helicopter.render(batch);
 		for (Tank tank : worldController.level.tanks) {
 			tank.render(batch);
@@ -44,11 +40,6 @@ public class WorldRenderer {
 		
 		for (Bomb bomb : worldController.level.bombs) {
 			bomb.render(batch);
-=======
-		worldController.helicopter.render(batch);
-		for (Bomb xBomb : worldController.bombs) {
-			xBomb.render(batch);
->>>>>>> d15812ef1d51d6ad27cd9a0af8f0e51098570ef9
 		}
 		
 		batch.end();

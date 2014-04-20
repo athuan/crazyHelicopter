@@ -24,9 +24,12 @@ public class WorldController {
 	public long timePress = 550l; // khoang thoi gian giua cac lan ban
 	public long BulletPressTime;  // bien nay de luu moc thoi gian khi ban 
 	
+	public float timeDelay;
+	
 	
 	public WorldController(){		// khoi tao het cho bon no
 		level = new Level();
+		timeDelay = 30;
 	}
 	
 	public void update(){		// cap nhat tat ca cac thay doi cho game
@@ -39,7 +42,7 @@ public class WorldController {
 		tankShotBullet();
 		
 		for (Bullet b : level.bullets) {
-			if(b.bullet.getY() > 600){
+			if(b.bullet.getY() < 20){
 				level.bullets.removeValue(b, true);
 			}
 			else{
@@ -52,28 +55,12 @@ public class WorldController {
 		
 		
 		if(Gdx.input.isKeyPressed(Keys.SPACE)){		// neu nhu goi lenh tha boom
-<<<<<<< HEAD
 			level.bomb = new Bomb();						// tao ra 1 doi tuong la boom
 			level.bombs.add(level.bomb);
 			level.bomb.setPosition(level.helicopter.heli.getX(), level.helicopter.heli.getY());
 			level.bomb.update();							// cho no tinh toan de no tu roi
-=======
-			bomb = new Bomb();						// tao ra 1 doi tuong la boom
-			bombs.add(bomb);
-			bomb.setPosition(helicopter.heli.getX(), helicopter.heli.getY());
-			// cho no tinh toan de no tu roi
->>>>>>> d15812ef1d51d6ad27cd9a0af8f0e51098570ef9
 		}
 		// duyet qua tat ca cac bomb 
-		
-		for (Bomb xBomb : bombs) {
-			if(!xBomb.isLive() ){	// kiem tra xem no co con duoc suat hien tren man hinh khong
-				bombs.removeValue(xBomb, false);
-				
-			}else{
-				xBomb.update();
-			}	
-		}
 		
 	}
 	
@@ -81,8 +68,15 @@ public class WorldController {
 		// Check bullet collision with helicopter
 		for (Bullet b : level.bullets) {
 			if(b.bullet.getBoundingRectangle().overlaps(level.helicopter.heli.getBoundingRectangle())){
+				//timeDelay= 300;
 				b.afterCollision();
+				
 				level.helicopter.afterCollision();
+//				timeDelay--;
+//				if(timeDelay < 0){
+					level.bullets.removeValue(b, true);
+//				}
+				
 			}
 		}
 		// Check bomb collision with tank and cannon

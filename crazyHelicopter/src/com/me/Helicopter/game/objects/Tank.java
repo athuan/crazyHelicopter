@@ -35,7 +35,7 @@ public class Tank extends AbstractObject {
 	public boolean getIsShot(){
 		return this.isShot;
 	}
-
+	
 
 	@Override
 	public void update() {	// ham nay se co cac dung lam cho xe tang chay o canh duoi man hinh
@@ -45,7 +45,10 @@ public class Tank extends AbstractObject {
 		if(System.currentTimeMillis() - originCheckTime >= timeToCheck){
 			originCheckTime = System.currentTimeMillis();
 			xPos = rand.nextInt(400) + 350;
-			if(tank.getX() <= 0 || tank.getX() > xPos) delta = -delta;
+			if(tank.getX() <= 0 || tank.getX() > xPos) {
+				tank.flip(true, false);
+				delta = -delta;
+			}
 		}
 	}
 
@@ -59,7 +62,10 @@ public class Tank extends AbstractObject {
 	
 	// sinh ra 1 so ngau nhien, neu < 20 thi tank se ban dan
 	public boolean shot(){
-		return rand.nextInt(1000) < 20;
+		if(rand.nextInt(1000) < 20){
+			return true;
+		}
+		return false;
 	}
 
 	@Override
