@@ -88,6 +88,7 @@ public class WorldController extends InputAdapter {
 		bird.update();
 
 		helper.update();
+		
 		// helper nem bom
 		if (helper.check == true) {
 			if (System.currentTimeMillis() - deltaTime1 > 200) {
@@ -97,7 +98,7 @@ public class WorldController extends InputAdapter {
 						helper.helper.getX() + helper.helper.getWidth() / 2,
 						helper.helper.getY() - 5);
 				deltaTime1 = System.currentTimeMillis();
-				Assets.instance.boomboom.play();
+				
 			}
 		}
 
@@ -181,7 +182,7 @@ public class WorldController extends InputAdapter {
 				if (!t.getIsShot()) {
 					BulletPressTime = System.currentTimeMillis();
 					t.setShot(true);
-
+					Assets.instance.boomboom.play();
 					bullet = new Bullet();
 					bullets.add(bullet);
 					bullet.setPositionBullet(t.tank.getX(), t.tank.getY());
