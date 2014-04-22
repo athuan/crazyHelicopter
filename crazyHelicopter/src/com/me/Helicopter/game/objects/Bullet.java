@@ -36,6 +36,10 @@ public class Bullet extends AbstractObject {
 
 	@Override
 	public void update() {
+		if(bullet.getY() < 700){
+			this.bullet.setPosition(bullet.getX(), bullet.getY() + 15);
+			//System.out.println("x: " + bullet.getX() + "y: "+ bullet.getY());
+		}
 		
 		setPathBullet(this.destination);
 	}
