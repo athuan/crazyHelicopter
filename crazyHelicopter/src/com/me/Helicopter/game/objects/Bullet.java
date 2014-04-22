@@ -14,6 +14,8 @@ public class Bullet extends AbstractObject {
 	private float pathBulletX;
 	private float pathBulletY;
 	
+	private float time;
+	
 	private float destination;
 	public Random rand = new Random();
 	
@@ -24,7 +26,7 @@ public class Bullet extends AbstractObject {
 		this.origin.set(dimension.x/2, dimension.y/2 );
 		pathBulletX = 1;
 		pathBulletY = 2.5f;
-		
+		time = 0;
 		destination = rand.nextInt(150) + 500;
 	}
 	
@@ -50,7 +52,13 @@ public class Bullet extends AbstractObject {
 		
 		if(bullet.getY() >= destination ) {
 			pathBulletY = - pathBulletY;
+			//bullet.setPosition(bullet.getX() + pathBulletX, bullet.getY() - (velocity.y + acceleration * time));
 		}
+		//else {
+		//	bullet.setPosition(bullet.getX() + pathBulletX, bullet.getY() + (velocity.y + acceleration * time));
+		//}
+			
+		//time += 0.01f;
 	}
 
 	@Override

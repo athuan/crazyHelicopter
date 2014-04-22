@@ -101,6 +101,8 @@ public class WorldController extends InputAdapter {
 				b.afterCollision();
 				
 				helicopter.afterCollision();
+				
+				bullets.removeValue(b, true);
 			}
 		}
 		// Check bomb collision with tank and cannon
@@ -110,6 +112,7 @@ public class WorldController extends InputAdapter {
 				if(bom.bomb.getBoundingRectangle().overlaps(t.tank.getBoundingRectangle())){
 					bom.afterCollision();
 					t.afterCollision();
+					
 				}
 			}
 			// bomb collision with cannon
