@@ -49,7 +49,7 @@ public class MainGame implements ApplicationListener {
 	}
 	@Override
 	public void dispose() {
-
+		worldRenderer.batch.dispose();
 		
 	}
 

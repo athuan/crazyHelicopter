@@ -36,7 +36,7 @@ public class Assets {
 		bomb = new Sprite(atlas.findRegion("bomb11"));
 		backGround = new Sprite(atlas.findRegion("background1"));
 		bullet = new Sprite(atlas.findRegion("bomb11"));
-		boomboom = Gdx.audio.newSound(Gdx.files.internal("sounds/rocket.wav"));
+		boomboom = Gdx.audio.newSound(Gdx.files.internal("sounds/boom.mp3"));
 		heli = Gdx.audio.newSound(Gdx.files.internal("sounds/heli3.wav"));
 		bird = new Sprite(atlas.findRegion("bomb21"));
 		helper = new Sprite(atlas.findRegion("helicopter1"));

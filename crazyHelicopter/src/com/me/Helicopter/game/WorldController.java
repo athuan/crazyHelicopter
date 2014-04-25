@@ -84,9 +84,7 @@ public class WorldController extends InputAdapter {
 		checkCollision();
 
 		helicopter.update();
-
 		bird.update();
-
 		helper.update();
 		
 		// helper nem bom
@@ -115,26 +113,14 @@ public class WorldController extends InputAdapter {
 		// System.out.println("Bullets size: " + bullets.size);
 
 		if (Gdx.input.isKeyPressed(Keys.SPACE)) { // neu nhu goi lenh tha boom
-			if (System.currentTimeMillis() - deltaTime > 200) {
-				bomb = new Bomb(); // tao ra 1 doi tuong la boom
-				bombs.add(bomb);
-				bomb.setPosition(
-						helicopter.heli.getX() + helicopter.heli.getWidth() / 2,
-						helicopter.heli.getY() - 5);
-				deltaTime = System.currentTimeMillis();
-				demBom++;
-				Assets.instance.boomboom.play();
-
-				// System.out.println("So boom : " + bombs.size);
-
-			}
+			helicopterDropBomb();
 		}
 		// duyet qua tat ca cac bomb
 		for (Bomb xbomb : bombs) {
 			if (!xbomb.isLive()) {
 				bombs.removeValue(xbomb, true);
 
-				System.out.println("So boom : " + bombs.size);
+				System.out.println("So boom Helicopter tha ra: " + bombs.size);
 			} else {
 				xbomb.update();
 			}
@@ -174,7 +160,19 @@ public class WorldController extends InputAdapter {
 		rocketCollision();
 		cannonCollisionWithBomb();
 	}
+	public void helicopterDropBomb(){
+		if (System.currentTimeMillis() - deltaTime > 200) {
+			bomb = new Bomb(); // tao ra 1 doi tuong la boom
+			bombs.add(bomb);
+			bomb.setPosition(
+					helicopter.heli.getX() + helicopter.heli.getWidth() / 2,
+					helicopter.heli.getY() - 5);
+			deltaTime = System.currentTimeMillis();
+			demBom++;
+			System.out.println("So boom Helicopter tha ra: " + bombs.size);
 
+		}
+	}
 	public void tankShotBullet() {
 		for (Tank t : tanks) {
 			t.update();
@@ -208,12 +206,14 @@ public class WorldController extends InputAdapter {
 		cannon = new Cannon();
 		cannon.setPosition(200, 100);
 		cannon.setBlood(100);
-		cannon.cannon.flip(false, true);
+		
 		cannons.add(cannon);
+		
 		cannon = new Cannon();
 		cannon.setPosition(600, 100);
 		cannon.setBlood(100);
 		cannons.add(cannon);
+		
 		cannon = new Cannon();
 		cannon.setPosition(400, 200);
 		cannon.setBlood(100);

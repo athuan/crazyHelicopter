@@ -27,7 +27,7 @@ public class Helicopter extends AbstractObject{
 		this.position.set(0,100);
 		xPos=0;
 		yPos=0;
-		velocity.x =2;
+		velocity.x =5;
 		velocity.y =0;
 		Assets.instance.heli.play();
 		Assets.instance.heli.loop();
@@ -39,6 +39,9 @@ public class Helicopter extends AbstractObject{
 
 	@Override
 	public void update() {
+
+		
+		
 		////// DI CHUYEN CUA MAY BAY
 		if( Gdx.input.isTouched() ){
 			xPos = Gdx.input.getX() - heli.getX();
