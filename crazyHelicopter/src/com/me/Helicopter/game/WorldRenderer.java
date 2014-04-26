@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.GL10;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.me.Helicopter.game.objects.Bomb;
 import com.me.Helicopter.game.objects.Bullet;
+import com.me.Helicopter.game.objects.Burn;
 import com.me.Helicopter.game.objects.Cannon;
 import com.me.Helicopter.game.objects.Rocket;
 import com.me.Helicopter.game.objects.Tank;
@@ -52,6 +53,9 @@ public class WorldRenderer {
 		}
 		for (Rocket rk : worldController.rockets2) {
 			rk.render(batch);
+		}
+		for (Burn bu : worldController.burns) {
+			bu.render(batch);
 		}
 
 		batch.end();

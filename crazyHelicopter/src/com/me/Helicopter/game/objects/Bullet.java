@@ -10,62 +10,52 @@ import com.me.Helicopter.game.Assets;
 public class Bullet extends AbstractObject {
 
 	public Sprite bullet;
-	
-	private float pathBulletX;
-	private float pathBulletY;
-	
-	private float destination;
+	public float time;
 	public Random rand = new Random();
+	public float angleRotation;
+	public float delta;
 	
-	public Bullet(){
+	public Bullet(int face){
 		bullet = new Sprite(Assets.instance.bullet);
 		bullet.rotate(90);
 		this.dimension.set(1, 1);
 		this.origin.set(dimension.x/2, dimension.y/2 );
-		pathBulletX = 1;
-		pathBulletY = 2.5f;
-		
-		destination = rand.nextInt(150) + 500;
+		time = 0;
+		delta = rand.nextInt(4);
+		acceleration = 10;
+		if(face == 1){
+			velocity = new Vector2(-2.5f, delta + 4.5f);
+			angleRotation = 1.3f - delta / 10;
+		}else{
+			velocity = new Vector2(2.5f, delta + 4.5f);
+			angleRotation = -(1.3f - delta/ 10);
+		}
 	}
 	
 	@Override
 	public void render(SpriteBatch batch) {
 		bullet.draw(batch);
-		
 	}
 
 	@Override
 	public void update() {
-		if(bullet.getY() < 700){
-			this.bullet.setPosition(bullet.getX(), bullet.getY() + 15);
-			//System.out.println("x: " + bullet.getX() + "y: "+ bullet.getY());
-		}
-		
-		setPathBullet(this.destination);
+		setPathBullet();
 	}
 	
 	public void setPositionBullet(float x, float y){
 		this.bullet.setPosition(x, y);
 	}
 	
-	public void setPathBullet(float destination){
-		bullet.setPosition(bullet.getX() + pathBulletX, bullet.getY() + pathBulletY);
-		bullet.rotate(-0.5f);
+	public void setPathBullet(){
+		bullet.setPosition(bullet.getX() + velocity.x, bullet.getY() + velocity.y - acceleration * time * time);
+		bullet.rotate(angleRotation);
 		
-		if(bullet.getY() >= destination ) {
-			pathBulletY = - pathBulletY;
-		}
+		time += 0.01f;
 	}
 
 	@Override
 	public void afterCollision() {
-		//bullet.scale(10);
-		//bullet.rotate(90);
-		//Vector2 pos = new Vector2(bullet.getX(), bullet.getY());
-		//bullet = new Sprite(Assets.instance.bulletDie);
-		//bullet.setPosition(pos.x, pos.y);
 		bullet.setRegion(Assets.instance.bulletDeath);
-		//bullet.scale(15f);
 		
 	}
 	

@@ -2,6 +2,7 @@ package com.me.Helicopter.game.objects;
 
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.Vector2;
 import com.me.Helicopter.game.Assets;
 
 public class Rocket extends AbstractObject {
@@ -9,16 +10,19 @@ public class Rocket extends AbstractObject {
 	public float speed;
 	public boolean collision;
 	public Sprite fire;
+	public Vector2 direction;
 
-	public Rocket() {
+	public Rocket(Vector2 pos, Vector2 des) {
 		rocket = new Sprite(Assets.instance.rocket);
 		rocket.rotate(45);
 		rocket.setSize(30, 5);
 		this.dimension.set(1, 1);
 		this.origin.set(dimension.x / 2, dimension.y / 2);
 		velocity.set(1, 1);
-		speed = 5;
+		speed = 1;
 		collision = false;
+		direction = new Vector2((des.x - pos.x),(des.y - pos.y));
+		direction.nor();
 	}
 
 	public Rocket(float angle) {
@@ -44,8 +48,9 @@ public class Rocket extends AbstractObject {
 	@Override
 	public void update() {
 		// TODO Auto-generated method stub
-		rocket.setPosition(rocket.getX() + velocity.x * speed,
-				rocket.getY() + speed * velocity.y);
+		//rocket.setPosition(rocket.getX() + velocity.x * speed,
+		//		rocket.getY() + speed * velocity.y);
+		rocket.setPosition(rocket.getX() + direction.x, rocket.getY() + direction.y);
 	}
 
 	public void update(float deltaTime) {

@@ -12,7 +12,7 @@ public class Tank extends AbstractObject {
 	private Random rand = new Random();
 	private float xPos; // create position.x random for tank
 	private boolean isShot;
-	
+	private int isFaceLeft;
 	private long timeToCheck = 1200l;
 	private long originCheckTime;
 	
@@ -26,6 +26,11 @@ public class Tank extends AbstractObject {
 		tank.setPosition(xPos, 100);
 		isShot = false;
 		originCheckTime = System.currentTimeMillis();
+		isFaceLeft = rand.nextInt(1);
+	}
+	
+	public int getIsFaceLeft(){
+		return isFaceLeft;
 	}
 	
 	public void setShot(boolean isShot){
@@ -46,6 +51,11 @@ public class Tank extends AbstractObject {
 			originCheckTime = System.currentTimeMillis();
 			xPos = rand.nextInt(400) + 350;
 			if(tank.getX() <= 0 || tank.getX() > xPos) {
+				if(isFaceLeft == 1){
+					isFaceLeft = 0;
+				}else{
+					isFaceLeft = 1;
+				}
 				tank.flip(true, false);
 				delta = -delta;
 			}

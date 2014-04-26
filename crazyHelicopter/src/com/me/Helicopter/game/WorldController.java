@@ -6,10 +6,12 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.audio.Music;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
 import com.me.Helicopter.game.objects.Bird;
 import com.me.Helicopter.game.objects.Bomb;
 import com.me.Helicopter.game.objects.Bullet;
+import com.me.Helicopter.game.objects.Burn;
 import com.me.Helicopter.game.objects.Cannon;
 import com.me.Helicopter.game.objects.Helicopter;
 import com.me.Helicopter.game.objects.Helper;
@@ -29,6 +31,8 @@ public class WorldController extends InputAdapter {
 	public Bird bird;
 	public Helper helper;
 	public Bullet bullet;
+	public Burn burn;
+	public Array<Burn> burns; // tao ra 1 mang cac dom lua sau khi dan va cham vs may bay
 	public Array<Bullet> bullets;
 	public Array<Tank> tanks; // tao ra 1 mang cac tank de quan ly cac tank duoc
 								// tao ra
@@ -61,6 +65,7 @@ public class WorldController extends InputAdapter {
 		bullets = new Array<Bullet>();
 		tanks = new Array<Tank>();
 		bombs = new Array<Bomb>();
+		burns = new Array<Burn>();
 		deltaTime = System.currentTimeMillis();
 		deltaTime1 = deltaTime;
 		addTank();
@@ -103,16 +108,31 @@ public class WorldController extends InputAdapter {
 		}
 
 		tankShotBullet();
+		CannonShotRocket();
 
 		for (Bullet b : bullets) {
-			if(b.bullet.getY() < 20){
+			if(b.bullet.getY() < 100){
 				bullets.removeValue(b, true);
 			} else {
 				b.update();
 			}
-
 		}
-		// System.out.println("Bullets size: " + bullets.size);
+		
+		for (Rocket r : rockets1) {
+			if(r.rocket.getY() > 800){
+				rockets1.removeValue(r, true);
+			}else{
+				r.update();
+			}
+		}
+		
+		for (Burn bu :burns){
+			if(bu.time <=0 ){
+				burns.removeValue(bu, true);
+			}else{
+				bu.update();
+			}
+		}
 
 		if (Gdx.input.isKeyPressed(Keys.SPACE)) { // neu nhu goi lenh tha boom
 			if (System.currentTimeMillis() - deltaTime > 200) {
@@ -142,7 +162,7 @@ public class WorldController extends InputAdapter {
 		}
 
 		// rocket
-		rocketUpdate();
+		//rocketUpdate();
 
 	}
 
@@ -151,8 +171,12 @@ public class WorldController extends InputAdapter {
 		for (Bullet b : bullets) {
 			if (b.bullet.getBoundingRectangle().overlaps(
 					helicopter.heli.getBoundingRectangle())) {
-				b.afterCollision();
-
+				//b.afterCollision();
+				bullets.removeValue(b, true);
+				// sau khi dan mat thi xuat hien 1 dom lua
+				burn = new Burn();
+				burns.add(burn);
+				burn.setPositionBullet(helicopter.heli.getX(), helicopter.heli.getY());
 				helicopter.afterCollision();
 			}
 		}
@@ -172,24 +196,45 @@ public class WorldController extends InputAdapter {
 
 		// collision rocket, cannon
 		rocketCollision();
-		cannonCollisionWithBomb();
+		//cannonCollisionWithBomb();
 	}
 
 	public void tankShotBullet() {
 		for (Tank t : tanks) {
 			t.update();
-			if (t.shot()) {
-				if (!t.getIsShot()) {
+			if (t.shot()) {  // tank chuan bi ban
+				if (!t.getIsShot()) {  // Neu chua ban thi ban
 					BulletPressTime = System.currentTimeMillis();
 					t.setShot(true);
 					Assets.instance.boomboom.play();
-					bullet = new Bullet();
+					bullet = new Bullet(t.getIsFaceLeft());
 					bullets.add(bullet);
 					bullet.setPositionBullet(t.tank.getX(), t.tank.getY());
-					// System.out.println("BulletTime" + BulletPressTime);
-				} else {
-					if (System.currentTimeMillis() - BulletPressTime >= timePress) {
+				} else { // Neu ban roi va thoi gian ban vien truoc > timePress thi coi nhu la chua ban de ban
+					if (System.currentTimeMillis() - BulletPressTime >= timePress) { 
 						t.setShot(false);
+					}
+				}
+			}
+		}
+	}
+	
+	public void CannonShotRocket(){
+		for (Cannon c : cannons) {
+			c.update();
+			if (c.shot()) {  // tank chuan bi ban
+				if (!c.getShot()) {  // Neu chua ban thi ban
+					BulletPressTime = System.currentTimeMillis();
+					c.setShot(true);
+					//Assets.instance.boomboom.play();
+					rocket = new Rocket(new Vector2(c.cannon.getX(), c.cannon.getY()),
+							new Vector2(helicopter.heli.getX(), helicopter.heli.getY()));
+					rockets1.add(rocket);
+					rocket.setPosition(c.cannon.getX(), c.cannon.getY());
+					//bullet.setPositionBullet(t.tank.getX(), t.tank.getY());
+				} else { // Neu ban roi va thoi gian ban vien truoc > timePress thi coi nhu la chua ban de ban
+					if (System.currentTimeMillis() - BulletPressTime >= timePress) { 
+						c.setShot(false);
 					}
 				}
 			}
@@ -208,16 +253,16 @@ public class WorldController extends InputAdapter {
 		cannon = new Cannon();
 		cannon.setPosition(200, 100);
 		cannon.setBlood(100);
-		cannon.cannon.flip(false, true);
+		//cannon.cannon.flip(false, true);
 		cannons.add(cannon);
-		cannon = new Cannon();
-		cannon.setPosition(600, 100);
-		cannon.setBlood(100);
-		cannons.add(cannon);
-		cannon = new Cannon();
-		cannon.setPosition(400, 200);
-		cannon.setBlood(100);
-		cannons.add(cannon);
+//		cannon = new Cannon();
+//		cannon.setPosition(600, 100);
+//		cannon.setBlood(100);
+//		cannons.add(cannon);
+//		cannon = new Cannon();
+//		cannon.setPosition(400, 200);
+//		cannon.setBlood(100);
+//		cannons.add(cannon);
 		speed = 5;
 		
 	}
