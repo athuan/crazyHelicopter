@@ -10,6 +10,7 @@ public class Burn extends AbstractObject{
 	
 	public Burn(){
 		burn = new Sprite(Assets.instance.fire);
+		burn.setSize(20, 20);
 		dimension.set(0.1f, 0.1f);
 		origin.set(dimension.x / 2, dimension.y / 2);
 		time = 30;
