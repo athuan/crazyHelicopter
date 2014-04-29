@@ -5,196 +5,203 @@ filter: Nearest,Nearest
 repeat: none
 background1
   rotate: false
-  xy: 2, 516
+  xy: 2, 524
   size: 640, 480
   orig: 640, 480
   offset: 0, 0
   index: -1
 background2
   rotate: false
-  xy: 2, 34
+  xy: 2, 42
   size: 300, 480
   orig: 300, 480
   offset: 0, 0
   index: -1
 bomb11
   rotate: false
-  xy: 1115, 798
+  xy: 2, 2
   size: 20, 9
   orig: 20, 9
   offset: 0, 0
   index: -1
 bomb12
   rotate: false
-  xy: 1504, 908
+  xy: 1504, 916
   size: 35, 16
   orig: 35, 16
   offset: 0, 0
   index: -1
 bomb13
   rotate: false
-  xy: 1289, 695
+  xy: 1289, 703
   size: 66, 32
   orig: 66, 32
   offset: 0, 0
   index: -1
 bomb14
   rotate: false
-  xy: 1029, 585
+  xy: 1029, 593
   size: 115, 53
   orig: 115, 53
   offset: 0, 0
   index: -1
 bomb15
   rotate: false
-  xy: 534, 208
+  xy: 534, 216
   size: 219, 102
   orig: 219, 102
   offset: 0, 0
   index: -1
 bomb16
   rotate: false
-  xy: 644, 779
+  xy: 644, 787
   size: 469, 217
   orig: 469, 217
   offset: 0, 0
   index: -1
 bomb21
   rotate: false
-  xy: 1161, 661
+  xy: 1161, 669
   size: 55, 10
   orig: 55, 10
   offset: 0, 0
   index: -1
 bomb22
   rotate: false
-  xy: 1551, 938
+  xy: 1551, 946
   size: 86, 14
   orig: 86, 14
   offset: 0, 0
   index: -1
 bomb23
   rotate: false
-  xy: 2, 5
+  xy: 2, 13
   size: 156, 27
   orig: 156, 27
   offset: 0, 0
   index: -1
 bomb24
   rotate: false
-  xy: 1551, 954
+  xy: 1551, 962
   size: 251, 42
   orig: 251, 42
   offset: 0, 0
   index: -1
 bomb25
   rotate: false
-  xy: 1115, 926
+  xy: 1115, 934
   size: 434, 70
   orig: 434, 70
   offset: 0, 0
   index: -1
+buttonFire
+  rotate: false
+  xy: 1115, 797
+  size: 31, 18
+  orig: 31, 18
+  offset: 0, 0
+  index: -1
 cannon1
   rotate: false
-  xy: 1289, 729
+  xy: 1289, 737
   size: 69, 78
   orig: 69, 78
   offset: 0, 0
   index: -1
 cannon1flip
   rotate: false
-  xy: 655, 25
+  xy: 655, 33
   size: 69, 78
   orig: 69, 78
   offset: 0, 0
   index: -1
 cannon2
   rotate: false
-  xy: 1372, 787
+  xy: 1372, 795
   size: 130, 137
   orig: 130, 137
   offset: 0, 0
   index: -1
 cannon2flip
   rotate: false
-  xy: 1029, 640
+  xy: 1029, 648
   size: 130, 137
   orig: 130, 137
   offset: 0, 0
   index: -1
 cannon3
   rotate: false
-  xy: 304, 259
+  xy: 304, 267
   size: 228, 255
   orig: 228, 255
   offset: 0, 0
   index: -1
 cannon3flip
   rotate: false
-  xy: 304, 2
+  xy: 304, 10
   size: 228, 255
   orig: 228, 255
   offset: 0, 0
   index: -1
 fire
   rotate: false
-  xy: 1161, 673
+  xy: 1161, 681
   size: 126, 134
   orig: 126, 134
   offset: 0, 0
   index: -1
 fire2
   rotate: false
-  xy: 534, 312
+  xy: 534, 320
   size: 190, 202
   orig: 190, 202
   offset: 0, 0
   index: -1
 helicopter1
   rotate: false
-  xy: 1804, 960
+  xy: 1804, 968
   size: 80, 36
   orig: 80, 36
   offset: 0, 0
   index: -1
 helicopter2
   rotate: false
-  xy: 644, 522
+  xy: 644, 530
   size: 132, 59
   orig: 132, 59
   offset: 0, 0
   index: -1
 helicopter3
   rotate: false
-  xy: 1115, 809
+  xy: 1115, 817
   size: 255, 115
   orig: 255, 115
   offset: 0, 0
   index: -1
 tank1
   rotate: false
-  xy: 778, 548
+  xy: 778, 556
   size: 66, 33
   orig: 66, 33
   offset: 0, 0
   index: -1
 tank2
   rotate: false
-  xy: 534, 41
+  xy: 534, 49
   size: 119, 62
   orig: 119, 62
   offset: 0, 0
   index: -1
 tank3
   rotate: false
-  xy: 534, 105
+  xy: 534, 113
   size: 205, 101
   orig: 205, 101
   offset: 0, 0
   index: -1
 tank4
   rotate: false
-  xy: 644, 583
+  xy: 644, 591
   size: 383, 194
   orig: 383, 194
   offset: 0, 0

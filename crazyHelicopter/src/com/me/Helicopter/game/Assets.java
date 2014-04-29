@@ -12,8 +12,8 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import sun.java2d.Disposer;
 
 public class Assets {
-
-	public static final Assets instance = new Assets(); // single ton
+	
+	public static final Assets instance= new Assets();	// single ton
 	// khai bao tat ca cac thu can thiet
 	TextureAtlas atlas; // lay tai nguyen ty nguon
 	public final Sprite helicopter; //
@@ -36,11 +36,13 @@ public class Assets {
 	public final Sprite cannon;
 	public final Sprite rocket;
 	public final Sprite fire;
-
+	
+	public final Sprite buttonFire;
 	private Assets() { // singleton
 		atlas = new TextureAtlas(Gdx.files.internal("pack/myImages.atlas"));
 
 		helicopter = new Sprite(atlas.findRegion("helicopter1"));
+
 		tank = new Sprite(atlas.findRegion("tank1"));
 		bomb = new Sprite(atlas.findRegion("bomb11"));
 		backGround = new Sprite(atlas.findRegion("background1"));
@@ -56,6 +58,9 @@ public class Assets {
 		cannon = new Sprite(atlas.findRegion("cannon1"));
 		rocket = new Sprite(atlas.findRegion("bomb21"));
 		fire = new Sprite(atlas.findRegion("fire"));
+		//button
+		
+		buttonFire = new Sprite(atlas.findRegion("bomb15"));
 	}
 
 }

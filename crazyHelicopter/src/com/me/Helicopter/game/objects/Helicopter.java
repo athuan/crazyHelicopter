@@ -24,13 +24,13 @@ public class Helicopter extends AbstractObject{
 		heli = heli2;
 		this.dimension.set(1, 1);
 		this.origin.set(dimension.x/2, dimension.y/2);
-		this.position.set(0,100);
-		xPos=0;
+		xPos=50;
 		yPos=0;
-		velocity.x =2;
-		velocity.y =0;
+		velocity.x =1;
+		velocity.y =1;
 		Assets.instance.heli.play();
 		Assets.instance.heli.loop();
+		heli.setPosition(0, 500);
 		
 		
 	}
@@ -39,36 +39,35 @@ public class Helicopter extends AbstractObject{
 
 	@Override
 	public void update() {
-		////// DI CHUYEN CUA MAY BAY
-		if( Gdx.input.isTouched() ){
-			xPos = Gdx.input.getX() - heli.getX();
-			yPos = Gdx.input.getY() - heli.getY();
-		}
+	
+		
 		if( heli.getX() > Gdx.graphics.getWidth() +50 ){
 			heli.setX(-50);
 		}
 		if( heli.getX() < -50 ){
 			heli.setX(Gdx.graphics.getWidth() + 50);
 		}
-		if( xPos ==0 ){
+		if( xPos == 0 ){
 			xPos=1;
 		}else if(xPos > 0) {
-			heli2.setPosition(heli.getX(), heli.getY());
+			heli2.setPosition(heli.getX(), heli.getY() );
 			heli = heli2;
 			
 		}else{
 			heli1.setPosition(heli.getX(), heli.getY());
 			heli = heli1;
 		}
-		if(count < 7){
+		if(count < 6){
+			heli.setPosition(heli.getX() + velocity.x*xPos/150, heli.getY() + velocity.y*yPos/150+1);
 			count++;
-			heli.setPosition(heli.getX() + velocity.x*xPos/Math.abs(xPos), 500);
-		}else if( count>=7 && count<14) {
+		}else if(count>=6 && count <12){
+			heli.setPosition(heli.getX() + velocity.x*xPos/150, heli.getY() + velocity.y*yPos/150-1);
 			count++;
-			heli.setPosition(heli.getX() + velocity.x*xPos/Math.abs(xPos) , 505);
+			
 		}else{
 			count=0;
 		}
+
 		////////////////////////////////////////////////
 		
 		
@@ -86,7 +85,7 @@ public class Helicopter extends AbstractObject{
 
 	@Override
 	public void afterCollision() {
-		// TODO Auto-generated method stub
+		
 		
 	}
 	
