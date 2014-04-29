@@ -32,6 +32,8 @@ public class WorldRenderer {
 		worldController.helicopter.render(batch);
 		worldController.bird.render(batch);
 		worldController.helper.render(batch);
+		// in ra cai button
+		worldController.button.draw(batch);
 		for (Tank tank : worldController.tanks) {
 			tank.render(batch);
 		}

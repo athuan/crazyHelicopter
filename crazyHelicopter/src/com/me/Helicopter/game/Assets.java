@@ -36,7 +36,8 @@ public class Assets {
 	public final Sprite cannon;
 	public final Sprite rocket;
 	public final Sprite fire;
-
+	
+	public final Sprite buttonFire;
 	private Assets() { // singleton
 		atlas = new TextureAtlas(Gdx.files.internal("pack/myImages.atlas"));
 
@@ -56,6 +57,9 @@ public class Assets {
 		cannon = new Sprite(atlas.findRegion("cannon1"));
 		rocket = new Sprite(atlas.findRegion("bomb21"));
 		fire = new Sprite(atlas.findRegion("fire"));
+		//button
+		
+		buttonFire = new Sprite(atlas.findRegion("bomb15"));
 	}
 
 }
