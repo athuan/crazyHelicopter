@@ -128,7 +128,7 @@ public class WorldController extends InputAdapter {
 					BulletPressTime = System.currentTimeMillis();
 					t.setShot(true);
 	
-					bullet = new Bullet();
+					bullet = new Bullet(t.getIsFaceLeft());
 					bullets.add(bullet);
 					bullet.setPositionBullet(t.tank.getX(), t.tank.getY() );
 					//System.out.println("BulletTime" + BulletPressTime);
