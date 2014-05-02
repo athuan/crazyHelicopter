@@ -2,6 +2,9 @@ package com.me.Helicopter.game.objects;
 
 import java.util.Random;
 
+import com.badlogic.gdx.graphics.Pixmap;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.Pixmap.Format;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.me.Helicopter.game.Assets;
@@ -13,7 +16,6 @@ public class Cannon extends AbstractObject {
 	private Random rand;
 	private float xPos;
 	private boolean shot;
-	public int blood;
 	public Sprite fire;
 
 	public Cannon() {
@@ -28,7 +30,7 @@ public class Cannon extends AbstractObject {
 		cannon.setPosition(xPos, 100);
 		cannon.setSize(50, 50);
 		shot = false;
-		blood = 100;
+		blood = 70;
 	}
 
 	@Override
@@ -40,15 +42,25 @@ public class Cannon extends AbstractObject {
 	@Override
 	public void render(SpriteBatch batch) {
 		// TODO Auto-generated method stub
+		drawBlood(batch);
 		if (blood > 0) {
 			cannon.draw(batch);
 		}
+	}
+	
+	public void drawBlood(SpriteBatch batch){
+		pixmap = new Pixmap((int)blood, boundBloodY, Format.RGBA8888 );
+		pixmap.setColor(1, 0, 0, 1);
+		
+		pixmap.fill();
+		texture = new Texture(pixmap);
+		batch.draw(texture, cannon.getX(), cannon.getY() + 70);
 	}
 
 	@Override
 	public void afterCollision() {
 		// TODO Auto-generated method stub
-		blood--;
+		blood -= 2;
 
 	}
 

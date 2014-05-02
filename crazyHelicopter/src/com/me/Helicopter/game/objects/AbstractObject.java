@@ -1,5 +1,7 @@
 package com.me.Helicopter.game.objects;
 
+import com.badlogic.gdx.graphics.Pixmap;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
@@ -21,7 +23,10 @@ public abstract class AbstractObject {
 	public Vector2 velocity;		// bien van toc
 	public float acceleration;			// bien gai toc
 	public int blood;					// luong mau
-	
+	public Pixmap pixmap;
+	public Texture texture;
+	public int boundBloodX;
+	public int boundBloodY = 5;
 	
 	public AbstractObject(){
 		dimension = new Vector2();

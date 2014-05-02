@@ -27,6 +27,8 @@ public class Assets {
 	public final Sprite bulletDie;
 	public final AtlasRegion bulletDeath;
 	
+	//public final Texture texture;
+	
 	
 	
 	public final Sprite bird;
@@ -36,6 +38,8 @@ public class Assets {
 	public final Sprite cannon;
 	public final Sprite rocket;
 	public final Sprite fire;
+	
+	public final Sprite blood;
 	
 	public final Sprite buttonFire;
 	private Assets() { // singleton
@@ -61,6 +65,8 @@ public class Assets {
 		//button
 		
 		buttonFire = new Sprite(atlas.findRegion("bomb15"));
+		blood = new Sprite(atlas.findRegion("blood"));
+		
 	}
 
 }

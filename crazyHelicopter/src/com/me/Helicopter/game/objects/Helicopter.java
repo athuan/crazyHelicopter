@@ -2,6 +2,9 @@ package com.me.Helicopter.game.objects;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
+import com.badlogic.gdx.graphics.Pixmap;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.Pixmap.Format;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.me.Helicopter.game.Assets;
@@ -15,8 +18,8 @@ public class Helicopter extends AbstractObject{
 	public float xCor;
 	public float xFactor;
 	int count=0;
-	
-	
+
+
 	public Helicopter(){
 		heli1 = new Sprite(Assets.instance.helicopter);
 		heli2 = new Sprite(Assets.instance.helicopter);
@@ -31,16 +34,16 @@ public class Helicopter extends AbstractObject{
 		Assets.instance.heli.play();
 		Assets.instance.heli.loop();
 		heli.setPosition(0, 500);
-		
-		
+		blood = 100;
+
 	}
-	
+
 
 
 	@Override
 	public void update() {
-	
-		
+
+
 		if( heli.getX() > Gdx.graphics.getWidth() +50 ){
 			heli.setX(-50);
 		}
@@ -52,7 +55,7 @@ public class Helicopter extends AbstractObject{
 		}else if(xPos > 0) {
 			heli2.setPosition(heli.getX(), heli.getY() );
 			heli = heli2;
-			
+
 		}else{
 			heli1.setPosition(heli.getX(), heli.getY());
 			heli = heli1;
@@ -63,31 +66,38 @@ public class Helicopter extends AbstractObject{
 		}else if(count>=6 && count <12){
 			heli.setPosition(heli.getX() + velocity.x*xPos/150, heli.getY() + velocity.y*yPos/150-1);
 			count++;
-			
+
 		}else{
 			count=0;
 		}
 
 		////////////////////////////////////////////////
-		
-		
+
+
 	}
 
 
 
 	@Override
 	public void render(SpriteBatch batch) {
+		drawBlood(batch);
 		heli.draw(batch);
-		
+
 	}
 
-
+	public void drawBlood(SpriteBatch batch){
+		pixmap = new Pixmap((int)blood, 5, Format.RGBA8888 );
+		pixmap.setColor(1, 0, 0, 1);
+		pixmap.fill();
+		texture = new Texture(pixmap);
+		batch.draw(texture, heli.getX(), heli.getY() + 50);
+	}
 
 	@Override
 	public void afterCollision() {
-		
-		
+		this.blood -= 3;
+
 	}
-	
+
 
 }

@@ -2,6 +2,10 @@ package com.me.Helicopter.game.objects;
 
 import java.util.Random;
 
+import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.Pixmap;
+import com.badlogic.gdx.graphics.Pixmap.Format;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.me.Helicopter.game.Assets;
@@ -16,9 +20,12 @@ public class Tank extends AbstractObject {
 	private long timeToCheck = 1200l;
 	private long originCheckTime;
 	
+	
 	private float delta = 1;
 	
 	public Tank(){
+		Texture.setEnforcePotImages(false);
+		
 		tank = new Sprite(Assets.instance.tank);
 		this.dimension.set(1, 1);
 		this.origin.set(dimension.x/2, dimension.y/2);
@@ -27,6 +34,10 @@ public class Tank extends AbstractObject {
 		isShot = false;
 		originCheckTime = System.currentTimeMillis();
 		isFaceLeft = rand.nextInt(1);
+		blood = 70;
+		boundBloodX = blood;
+		//pixmap = new Pixmap((int)blood, 5, Format.RGBA8888 );
+		
 	}
 	
 	public int getIsFaceLeft(){
@@ -60,14 +71,26 @@ public class Tank extends AbstractObject {
 				delta = -delta;
 			}
 		}
+		
+		
 	}
 
 
 
 	@Override
 	public void render(SpriteBatch batch) {
+		drawBlood(batch);
 		tank.draw(batch);
 		
+	}
+	
+	public void drawBlood(SpriteBatch batch){
+		pixmap = new Pixmap((int)blood, boundBloodY, Format.RGBA8888 );
+		pixmap.setColor(1, 0, 0, 1);
+		
+		pixmap.fill();
+		texture = new Texture(pixmap);
+		batch.draw(texture, tank.getX(), tank.getY() + 50);
 	}
 	
 	// sinh ra 1 so ngau nhien, neu < 20 thi tank se ban dan
@@ -77,11 +100,13 @@ public class Tank extends AbstractObject {
 		}
 		return false;
 	}
+	
 
 	@Override
 	public void afterCollision() {
 		// TODO Auto-generated method stub
-		
+		this.blood -= 2;
 	}
+	
 
 }

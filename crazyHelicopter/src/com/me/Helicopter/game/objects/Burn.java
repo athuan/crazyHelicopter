@@ -8,10 +8,11 @@ public class Burn extends AbstractObject{
 	public Sprite burn;
 	public float time;
 	
-	public Burn(){
-		burn = new Sprite(Assets.instance.fire);
+	public Burn(Sprite sprite){
+		//burn = new Sprite(Assets.instance.fire);
+		burn = new Sprite(sprite);
 		burn.setSize(20, 20);
-		dimension.set(0.1f, 0.1f);
+		dimension.set(1f, 1f);
 		origin.set(dimension.x / 2, dimension.y / 2);
 		time = 30;
 	}
