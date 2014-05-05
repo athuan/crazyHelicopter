@@ -49,7 +49,7 @@ public class Cannon extends AbstractObject {
 	}
 	
 	public void drawBlood(SpriteBatch batch){
-		pixmap = new Pixmap((int)blood, boundBloodY, Format.RGBA8888 );
+		pixmap = new Pixmap((int)blood/2, boundBloodY, Format.RGBA8888 );
 		pixmap.setColor(1, 0, 0, 1);
 		
 		pixmap.fill();

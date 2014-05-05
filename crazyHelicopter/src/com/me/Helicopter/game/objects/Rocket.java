@@ -10,57 +10,74 @@ public class Rocket extends AbstractObject {
 	public float speed;
 	public boolean collision;
 	public Sprite fire;
-	public Vector2 direction;
+	public float angle;
+	public boolean withboss;
+	public Vector2 direction = new Vector2();
 
+	// private Random rand = new Random();
+	//
+	// public Rocket(float angle) {
+	// this.angle = angle;
+	// init(angle);
+	// }
+	//
+	// /*public Rocket(float angle) {
+	// init(angle);
+	// }*/
+	//
+	// public void init(float angle) {
+	// rocket = new Sprite(Assets.instance.rocket);
+	// // fire = new Sprite(Assets.instance.fire);
+	// this.angle = angle;
+	// //angle = rand.nextInt(120) + 30;
+	// rocket.rotate(angle);
+	// rocket.setSize(30, 5);
+	// this.dimension.set(1, 1);
+	// this.origin.set(dimension.x / 2, dimension.y / 2);
+	// velocity.set((float) Math.cos(angle / 180 * Math.PI), (float)
+	// Math.sin(angle / 180 * Math.PI));
+	// //velocity.set(1, 1);
+	// speed = 5;
+	// angle = 0;
+	// }
 	public Rocket(Vector2 pos, Vector2 des) {
 		rocket = new Sprite(Assets.instance.rocket);
-		rocket.rotate(45);
-		rocket.setSize(30, 5);
-		this.dimension.set(1, 1);
-		this.origin.set(dimension.x / 2, dimension.y / 2);
-		velocity.set(1, 1);
-		speed = 1;
-		collision = false;
-		direction = new Vector2((des.x - pos.x),(des.y - pos.y));
+		direction = new Vector2(-pos.x +des.x+ 50,  -pos.y + des.y+ 50);
 		direction.nor();
-	}
-
-	public Rocket(float angle) {
-		rocket = new Sprite(Assets.instance.rocket);
-		// fire = new Sprite(Assets.instance.fire);
-		rocket.rotate(angle);
+		collision = false;
+		angle = (float) Math.atan2(-pos.y + des.y, -pos.x +des.x);
+		speed = 1;
+		rocket.rotate((float) (angle/Math.PI* 180));
 		rocket.setSize(30, 5);
-		this.dimension.set(1, 1);
-		this.origin.set(dimension.x / 2, dimension.y / 2);
-		velocity.set(1, 1);
-		speed = 5;
 	}
 
 	@Override
 	public void render(SpriteBatch batch) {
 		// TODO Auto-generated method stub
-		if (!collision) {
-
+		//if (!collision) {
 			rocket.draw(batch);
-		}
+			//if (withboss == true) {
+				// rocket.rotate(90);
+			//}
+
+		//}
 	}
 
 	@Override
 	public void update() {
 		// TODO Auto-generated method stub
-		//rocket.setPosition(rocket.getX() + velocity.x * speed,
-		//		rocket.getY() + speed * velocity.y);
-		rocket.setPosition(rocket.getX() + direction.x, rocket.getY() + direction.y);
+//		rocket.setPosition(rocket.getX() + 5* direction.x, rocket.getY()
+//				+ 5* Math.abs(direction.y));
 	}
 
-	public void update(float deltaTime) {
-		rocket.setPosition(rocket.getX() + velocity.x * deltaTime,
-				rocket.getY() + velocity.y * Math.abs(deltaTime));
+	public void update(float speed) {
+//		this.speed = speed;
+//		rocket.setPosition(rocket.getX() + velocity.x * speed, rocket.getY()
+//				+ velocity.y * speed);
+		rocket.setPosition(rocket.getX() + speed* direction.x, rocket.getY()
+				+ speed* Math.abs(direction.y));
 	}
 
-	public void update(float a, float b) {
-		rocket.setPosition(a, b);
-	}
 
 	@Override
 	public void afterCollision() {
@@ -75,11 +92,25 @@ public class Rocket extends AbstractObject {
 	public float getX() {
 		return rocket.getX();
 	}
-	public void setSpeed(float speed){
+
+	public float getY() {
+		return rocket.getY();
+	}
+
+	public void setSpeed(float speed) {
 		this.speed = speed;
 	}
-	public float getSpeed(){
+
+	public float getSpeed() {
 		return speed;
+	}
+
+	public void setRotation(float angle) {
+		this.angle = angle;
+	}
+
+	public float getRotation() {
+		return angle;
 	}
 
 }
