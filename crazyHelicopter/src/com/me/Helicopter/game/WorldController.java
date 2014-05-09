@@ -8,6 +8,7 @@ import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
+import com.badlogic.gdx.utils.Disposable;
 import com.me.Helicopter.game.objects.Bird;
 import com.me.Helicopter.game.objects.Bomb;
 import com.me.Helicopter.game.objects.Bullet;
@@ -24,7 +25,7 @@ import com.me.Helicopter.game.objects.Tank;
 // chu y la worldController chu yeu la goi toi cac ham update cua cac doi tuong
 // vi du voi may bay thi no se goi toi helicopter.update
 
-public class WorldController  {
+public class WorldController {
 	public Helicopter helicopter; // 1 doi tuong may bay
 	public Bomb bomb;
 	public Tank tank;
@@ -36,7 +37,9 @@ public class WorldController  {
 								// vs may bay
 	public Array<Bullet> bullets;
 	public Array<Tank> tanks; // tao ra 1 mang cac tank de quan ly cac tank duoc
-	public Sprite button;
+	// BUTOTN
+	public Sprite buttonFire;// nut de tha boom
+	public Sprite buttonHelper;
 	// tao ra
 	public Array<Bomb> bombs;
 
@@ -89,30 +92,49 @@ public class WorldController  {
 
 		//
 
-		button = new Sprite(Assets.instance.buttonFire);
-		button.setColor(1, 1, 1, 0.3f);
+		buttonFire = new Sprite(Assets.instance.buttonFire);
+		buttonFire.setColor(1, 1, 1, 0.3f);
+		
+		buttonHelper = new Sprite(Assets.instance.buttonHelper);
+		
+		buttonHelper.setSize(buttonFire.getHeight(), buttonFire.getHeight());
+		buttonHelper.setOrigin(0, 0);
+		buttonHelper.setPosition(Gdx.graphics.getWidth() - buttonHelper.getWidth(),0);
+		
+		buttonHelper.setColor(1, 1, 1, 0.3f);
 
 	}
 
 	public void update() { // cap nhat tat ca cac thay doi cho game
 		// no se goi toi cac thay doi cua tat ca cac thanh phan con
 		// chi goi update cua cac phan tu con ma thoi
-		checkCollision();
-
-
-
 		
-
 		helper.update();
+		helicopter.update();
+		
+		/////////////////////////
+		//cho nay de ve cac nut bam
+		if(helper.callHelper){
+			buttonHelper.setColor(1, 1, 1, 1);
+		}else{
+			buttonHelper.setColor(1, 1, 1, 0.3f);
+		}
+		
+		
+		/////////////////////
+		checkCollision();
+		
+		
 
 		// helper nem bom
 		if (helper.check == true) {
-			if (System.currentTimeMillis() - deltaTime1 > 200) {
+			if (System.currentTimeMillis() - deltaTime1 > 40) {
 				bomb = new Bomb(); // tao ra 1 doi tuong la boom
 				bombs.add(bomb);
 				bomb.setPosition(
 						helper.helper.getX() + helper.helper.getWidth() / 2,
-						helper.helper.getY() - 5);
+						helper.helper.getY() - 10);
+				
 				deltaTime1 = System.currentTimeMillis();
 
 			}
@@ -122,16 +144,16 @@ public class WorldController  {
 		CannonShotRocket();
 
 		for (Burn bu :burns){
-			if(bu.time <=0 ){
+			if(bu.time <= 0 ){
 				burns.removeValue(bu, true);
 			}else{
 				bu.update();
 			}
 		}
-		if ( Gdx.input.isTouched()) { // neu nhu goi lenh tha boom
-			float x= Gdx.input.getX();
-			float y =Gdx.graphics.getHeight() - Gdx.input.getY();
-			if( button.getBoundingRectangle().contains( x,y)){
+		if ( Gdx.input.isTouched()) { 
+			float x = Gdx.input.getX();
+			float y = Gdx.graphics.getHeight() - Gdx.input.getY();
+			if( buttonFire.getBoundingRectangle().contains( x,y)){	// check vung nem boom
 				if(System.currentTimeMillis() - deltaTime > 80){
 					bomb = new Bomb(); // tao ra 1 doi tuong la boom
 					bombs.add(bomb);
@@ -141,6 +163,15 @@ public class WorldController  {
 					deltaTime = System.currentTimeMillis();
 					demBom++;
 				}
+			}else if( buttonHelper.getBoundingRectangle().contains( x,y)){ // check vung goi helper
+				// tuc la khi goi helper
+				if( helper.callHelper ){ // neu co kha nang goi duoc helper 
+					helper.check = true;	// tuc la tuc no chay
+					helper.callHelper = false;
+				}
+				
+				
+				
 			}else{
 			////// DI CHUYEN CUA MAY BAY
 				helicopter.xPos = x - helicopter.heli.getX();
@@ -149,32 +180,18 @@ public class WorldController  {
 
 			}
 		}
-		if(Gdx.input.isKeyPressed(Input.Keys.SPACE)){
-			if(System.currentTimeMillis() - deltaTime > 300){
-				bomb = new Bomb(); // tao ra 1 doi tuong la boom
-				bombs.add(bomb);
-				bomb.setPosition(
-						helicopter.heli.getX() + helicopter.heli.getWidth() / 2,
-						helicopter.heli.getY() - 5);
-				deltaTime = System.currentTimeMillis();
-				demBom++;
+
+		
+
+		
+		// duyet qua tat ca cac bomb
+		for (Bomb xbomb : bombs) {
+			if (!xbomb.isLive()) {
+				bombs.removeValue(xbomb, true);
+			} else {
+				xbomb.update();
 			}
 		}
-		
-		helicopter.update();
-				// System.out.println("So boom : " + bombs.size);
-		// duyet qua tat ca cac bomb
-//		for (Bomb xbomb : bombs) {
-//			if (!xbomb.isLive()) {
-//				bombs.removeValue(xbomb, true);
-//			} else {
-//				xbomb.update();
-//			}
-//
-//		}
-
-		// rocket
-		//rocketUpdate();
 
 	}
 
@@ -202,7 +219,7 @@ public class WorldController  {
 			for (Tank t : tanks) {
 				if (bom.bomb.getBoundingRectangle().overlaps(
 						t.tank.getBoundingRectangle())) {
-					addBurn(bom.bomb.getX(), bom.bomb.getY(), Assets.instance.bird);
+					addBurn(bom.bomb.getX(), bom.bomb.getY(), Assets.instance.fire);
 					bombs.removeValue(bom, true);
 					if(t.blood <= 0){
 						tanks.removeValue(t, true);
@@ -252,16 +269,16 @@ public class WorldController  {
 		
 		if(helicopter.heli.getBoundingRectangle().overlaps(
 				bird.bird.getBoundingRectangle())){
-			//helicopter.blood -= 2;
+			helicopter.blood -= 2;
 			addBurn(bird.bird.getX(), bird.bird.getY(), Assets.instance.fire);
-			//bird.check = true;
+			bird.check = false;
 		}else{
 			bird.update();
 		}
 
 		// collision rocket, cannon
-		//rocketCollision();
-		// cannonCollisionWithBomb();
+		rocketCollision();
+		cannonCollisionWithBomb();
 	}
 
 	public void tankShotBullet() {
@@ -298,7 +315,6 @@ public class WorldController  {
 							helicopter.heli.getX(), helicopter.heli.getY()));
 					rockets1.add(rocket);
 					rocket.setPosition(c.cannon.getX(), c.cannon.getY());
-					// bullet.setPositionBullet(t.tank.getX(), t.tank.getY());
 				} else { // Neu ban roi va thoi gian ban vien truoc > timePress
 							// thi coi nhu la chua ban de ban
 					if (System.currentTimeMillis() - BulletPressTime >= timePress) {
@@ -310,8 +326,9 @@ public class WorldController  {
 	}
 	
 	// sau khi va cham se xuat hien sprite o vi tri (posX, posY) 
-	public void addBurn(float posX, float posY, Sprite sprire){
-		burn = new Burn(sprire);
+	public void addBurn(float posX, float posY, Sprite sprite){
+		
+		burn = new Burn(sprite);
 		burns.add(burn);
 		burn.setPositionBullet(posX, posY);
 	}
@@ -335,16 +352,7 @@ public class WorldController  {
 		cannons.add(cannon);
 		cannon = new Cannon();
 		cannon.setPosition(600, 200);
-		// cannon.cannon.flip(false, true);
 		cannons.add(cannon);
-		// cannon = new Cannon();
-		// cannon.setPosition(600, 100);
-		// cannon.setBlood(100);
-		// cannons.add(cannon);
-		// cannon = new Cannon();
-		// cannon.setPosition(400, 200);
-		// cannon.setBlood(100);
-		// cannons.add(cannon);
 		speed = 5; 
 
 	}
@@ -362,6 +370,7 @@ public class WorldController  {
 							cn.cannon.flip(false, false);
 							rocket = new Rocket(45);
 							rockets1.add(rocket);
+							System.out.println("So luong rockets1" + rockets1.size);
 							rocket.setPosition(cn.cannon.getX() + 15,
 									cn.cannon.getY() + 50);
 						}
@@ -407,9 +416,7 @@ public class WorldController  {
 		for (Rocket rk : rockets1) {
 			if (rk.rocket.getBoundingRectangle().overlaps(
 					helicopter.heli.getBoundingRectangle())) {
-				// helicopter.afterCollision();
 				rk.afterCollision();
-				// System.out.println("tenlua1: " + helicopter.blood);
 				break;
 			} else {
 				continue;
@@ -418,9 +425,7 @@ public class WorldController  {
 		for (Rocket rk : rockets2) {
 			if (rk.rocket.getBoundingRectangle().overlaps(
 					helicopter.heli.getBoundingRectangle())) {
-				// helicopter.afterCollision();
 				rk.afterCollision();
-				// System.out.println("tenlua2: " + helicopter.blood);
 				break;
 			} else {
 				continue;
@@ -443,5 +448,6 @@ public class WorldController  {
 			}
 		}
 	}
+
 
 }

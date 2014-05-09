@@ -5,211 +5,258 @@ filter: Nearest,Nearest
 repeat: none
 background1
   rotate: false
-  xy: 2, 525
+  xy: 1284, 542
   size: 640, 480
   orig: 640, 480
   offset: 0, 0
   index: -1
 background2
   rotate: false
-  xy: 2, 43
+  xy: 1702, 60
   size: 300, 480
   orig: 300, 480
   offset: 0, 0
   index: -1
+bird
+  rotate: false
+  xy: 473, 205
+  size: 630, 47
+  orig: 630, 47
+  offset: 0, 0
+  index: -1
 blood
   rotate: false
-  xy: 1551, 953
+  xy: 1116, 105
   size: 113, 8
   orig: 113, 8
   offset: 0, 0
   index: -1
 bomb11
   rotate: false
-  xy: 160, 32
+  xy: 1997, 894
   size: 20, 9
   orig: 20, 9
   offset: 0, 0
   index: -1
 bomb12
   rotate: false
-  xy: 1504, 917
+  xy: 1953, 42
   size: 35, 16
   orig: 35, 16
   offset: 0, 0
   index: -1
 bomb13
   rotate: false
-  xy: 1289, 704
+  xy: 1926, 676
   size: 66, 32
   orig: 66, 32
   offset: 0, 0
   index: -1
 bomb14
   rotate: false
-  xy: 1029, 594
+  xy: 1926, 905
   size: 115, 53
   orig: 115, 53
   offset: 0, 0
   index: -1
-bomb15
-  rotate: false
-  xy: 534, 217
-  size: 219, 102
-  orig: 219, 102
-  offset: 0, 0
-  index: -1
 bomb16
   rotate: false
-  xy: 644, 788
+  xy: 2, 35
   size: 469, 217
   orig: 469, 217
   offset: 0, 0
   index: -1
 bomb21
   rotate: false
-  xy: 2, 2
+  xy: 1551, 2
   size: 55, 10
   orig: 55, 10
   offset: 0, 0
   index: -1
 bomb22
   rotate: false
-  xy: 1161, 666
+  xy: 160, 19
   size: 86, 14
   orig: 86, 14
   offset: 0, 0
   index: -1
 bomb23
   rotate: false
-  xy: 2, 14
+  xy: 2, 6
   size: 156, 27
   orig: 156, 27
   offset: 0, 0
   index: -1
 bomb24
   rotate: false
-  xy: 1551, 963
+  xy: 1700, 16
   size: 251, 42
   orig: 251, 42
   offset: 0, 0
   index: -1
 bomb25
   rotate: false
-  xy: 1115, 935
+  xy: 858, 11
   size: 434, 70
   orig: 434, 70
   offset: 0, 0
   index: -1
 buttonFire
   rotate: false
-  xy: 1115, 798
+  xy: 1248, 234
   size: 31, 18
   orig: 31, 18
   offset: 0, 0
   index: -1
+buttonHelper
+  rotate: false
+  xy: 1284, 123
+  size: 416, 417
+  orig: 416, 417
+  offset: 0, 0
+  index: -1
 cannon1
   rotate: false
-  xy: 1289, 738
+  xy: 1926, 825
   size: 69, 78
   orig: 69, 78
   offset: 0, 0
   index: -1
 cannon1flip
   rotate: false
-  xy: 655, 34
+  xy: 1926, 745
   size: 69, 78
   orig: 69, 78
   offset: 0, 0
   index: -1
 cannon2
   rotate: false
-  xy: 1372, 796
+  xy: 1116, 115
   size: 130, 137
   orig: 130, 137
-  offset: 0, 0
-  index: -1
-cannon2flip
-  rotate: false
-  xy: 1029, 649
-  size: 130, 137
-  orig: 130, 137
-  offset: 0, 0
-  index: -1
-cannon3
-  rotate: false
-  xy: 304, 268
-  size: 228, 255
-  orig: 228, 255
-  offset: 0, 0
-  index: -1
-cannon3flip
-  rotate: false
-  xy: 304, 11
-  size: 228, 255
-  orig: 228, 255
-  offset: 0, 0
-  index: -1
-fire
-  rotate: false
-  xy: 1161, 682
-  size: 126, 134
-  orig: 126, 134
-  offset: 0, 0
-  index: -1
-fire2
-  rotate: false
-  xy: 534, 321
-  size: 190, 202
-  orig: 190, 202
   offset: 0, 0
   index: -1
 helicopter1
   rotate: false
-  xy: 1804, 969
+  xy: 1551, 14
   size: 80, 36
   orig: 80, 36
   offset: 0, 0
   index: -1
-helicopter2
-  rotate: false
-  xy: 644, 531
-  size: 132, 59
-  orig: 132, 59
-  offset: 0, 0
-  index: -1
 helicopter3
   rotate: false
-  xy: 1115, 818
+  xy: 1294, 6
   size: 255, 115
   orig: 255, 115
   offset: 0, 0
   index: -1
+helper2
+  rotate: false
+  xy: 858, 83
+  size: 256, 120
+  orig: 256, 120
+  offset: 0, 0
+  index: -1
+helper3
+  rotate: false
+  xy: 1551, 52
+  size: 147, 69
+  orig: 147, 69
+  offset: 0, 0
+  index: -1
+menu
+  rotate: false
+  xy: 2, 254
+  size: 1280, 768
+  orig: 1280, 768
+  offset: 0, 0
+  index: -1
 tank1
   rotate: false
-  xy: 778, 557
+  xy: 1926, 710
   size: 66, 33
   orig: 66, 33
   offset: 0, 0
   index: -1
 tank2
   rotate: false
-  xy: 534, 50
+  xy: 1926, 960
   size: 119, 62
   orig: 119, 62
   offset: 0, 0
   index: -1
-tank3
-  rotate: false
-  xy: 534, 114
-  size: 205, 101
-  orig: 205, 101
-  offset: 0, 0
-  index: -1
 tank4
   rotate: false
-  xy: 644, 592
+  xy: 473, 9
   size: 383, 194
   orig: 383, 194
+  offset: 0, 0
+  index: -1
+
+myImages2.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+bomb15
+  rotate: false
+  xy: 646, 377
+  size: 219, 102
+  orig: 219, 102
+  offset: 0, 0
+  index: -1
+cannon2flip
+  rotate: false
+  xy: 462, 138
+  size: 130, 137
+  orig: 130, 137
+  offset: 0, 0
+  index: -1
+cannon3
+  rotate: false
+  xy: 2, 11
+  size: 228, 255
+  orig: 228, 255
+  offset: 0, 0
+  index: -1
+cannon3flip
+  rotate: false
+  xy: 232, 11
+  size: 228, 255
+  orig: 228, 255
+  offset: 0, 0
+  index: -1
+fire
+  rotate: false
+  xy: 462, 2
+  size: 126, 134
+  orig: 126, 134
+  offset: 0, 0
+  index: -1
+fire2
+  rotate: false
+  xy: 454, 277
+  size: 190, 202
+  orig: 190, 202
+  offset: 0, 0
+  index: -1
+helicopter2
+  rotate: false
+  xy: 867, 420
+  size: 132, 59
+  orig: 132, 59
+  offset: 0, 0
+  index: -1
+helper
+  rotate: false
+  xy: 2, 268
+  size: 450, 211
+  orig: 450, 211
+  offset: 0, 0
+  index: -1
+tank3
+  rotate: false
+  xy: 646, 274
+  size: 205, 101
+  orig: 205, 101
   offset: 0, 0
   index: -1

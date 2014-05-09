@@ -2,6 +2,7 @@ package com.me.Helicopter.game.objects;
 
 import java.util.Random;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
@@ -14,24 +15,24 @@ public class Bullet extends AbstractObject {
 	public Random rand = new Random();
 	public float angleRotation;
 	public float delta;
-	
-	public Bullet(int face){
+
+	public Bullet(int face) {
 		bullet = new Sprite(Assets.instance.bullet);
 		bullet.rotate(90);
 		this.dimension.set(1, 1);
-		this.origin.set(dimension.x/2, dimension.y/2 );
+		this.origin.set(dimension.x / 2, dimension.y / 2);
 		time = 0;
 		delta = rand.nextInt(4);
 		acceleration = 10;
-		if(face == 1){
+		if (face == 1) {
 			velocity = new Vector2(-2.5f, delta + 4.5f);
 			angleRotation = 1.3f - delta / 10;
-		}else{
+		} else {
 			velocity = new Vector2(2.5f, delta + 4.5f);
-			angleRotation = -(1.3f - delta/ 10);
+			angleRotation = -(1.3f - delta / 10);
 		}
 	}
-	
+
 	@Override
 	public void render(SpriteBatch batch) {
 		bullet.draw(batch);
@@ -41,23 +42,25 @@ public class Bullet extends AbstractObject {
 	public void update() {
 		setPathBullet();
 	}
-	
-	public void setPositionBullet(float x, float y){
+
+	public void setPositionBullet(float x, float y) {
 		this.bullet.setPosition(x, y);
 	}
-	
-	public void setPathBullet(){
-		bullet.setPosition(bullet.getX() + velocity.x, bullet.getY() + velocity.y - acceleration * time * time);
+
+	public void setPathBullet() {
+		bullet.setPosition(bullet.getX() + 55*Gdx.graphics.getDeltaTime()
+				* velocity.x, bullet.getY() + 50*Gdx.graphics.getDeltaTime()
+				* velocity.y - 50*Gdx.graphics.getDeltaTime() * acceleration
+				* time * time);
 		bullet.rotate(angleRotation);
-		
+
 		time += 0.01f;
 	}
 
 	@Override
 	public void afterCollision() {
 		bullet.setRegion(Assets.instance.bulletDeath);
-		
+
 	}
-	
 
 }

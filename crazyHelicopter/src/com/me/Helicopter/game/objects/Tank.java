@@ -85,8 +85,12 @@ public class Tank extends AbstractObject {
 	}
 	
 	public void drawBlood(SpriteBatch batch){
-		pixmap = new Pixmap((int)blood, boundBloodY, Format.RGBA8888 );
-		pixmap.setColor(1, 0, 0, 1);
+		pixmap = new Pixmap((int)blood, 5, Format.RGBA8888 );// neu ma mau am thi toi luon :v, vut ra loi ngay
+		if( this.blood > 60 ){
+			pixmap.setColor(0, 0, 1, 1);
+		}else {
+			pixmap.setColor(1, 0, 0, 1);
+		}
 		
 		pixmap.fill();
 		texture = new Texture(pixmap);

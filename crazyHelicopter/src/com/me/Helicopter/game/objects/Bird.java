@@ -50,11 +50,11 @@ public class Bird extends AbstractObject {
 				check = false;
 			}else{
 				if (direction){
-					xPos1 += 5;
+					xPos1 += 200*Gdx.graphics.getDeltaTime();
 					bird = bird1;
 					bird.setPosition(xPos1, yPos);
 				}else{
-					xPos2 -= 5;
+					xPos2 -= 200*Gdx.graphics.getDeltaTime();
 					bird = bird2;
 					bird.setPosition(xPos2, yPos);
 				}

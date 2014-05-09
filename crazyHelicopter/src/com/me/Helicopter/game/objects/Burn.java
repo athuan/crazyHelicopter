@@ -2,7 +2,7 @@ package com.me.Helicopter.game.objects;
 
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.me.Helicopter.game.Assets;
+
 
 public class Burn extends AbstractObject{
 	public Sprite burn;
@@ -12,7 +12,7 @@ public class Burn extends AbstractObject{
 		//burn = new Sprite(Assets.instance.fire);
 		burn = new Sprite(sprite);
 		burn.setSize(20, 20);
-		dimension.set(1f, 1f);
+		
 		origin.set(dimension.x / 2, dimension.y / 2);
 		time = 30;
 	}
@@ -25,11 +25,14 @@ public class Burn extends AbstractObject{
 	@Override
 	public void update() {
 		time --;
+		burn.setColor(1, 1, 1, time/30);
+		burn.setPosition(burn.getX() + 0.1f, burn.getY() + 1);
+		burn.setSize(30- time + 20, 30 -time +20);
 		
 	}
 	
 	public void setPositionBullet(float x, float y){
-		this.burn.setPosition(x, y);
+		this.burn.setPosition(x, y-20);
 	}
 
 	@Override

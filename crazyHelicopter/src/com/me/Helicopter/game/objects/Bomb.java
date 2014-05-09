@@ -35,7 +35,7 @@ public class Bomb extends AbstractObject {
 
 
 	public boolean isLive() {
-		if( bomb.getY() <10 ){	
+		if( bomb.getY() < 0 ){	
 			return false;
 		}
 			

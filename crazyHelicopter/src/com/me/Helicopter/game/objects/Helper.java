@@ -14,7 +14,9 @@ public class Helper extends AbstractObject {
 	public float xPos;
 	public float yPos;	// do cao mac dinh 500
 	public float rand;  // xac suat XH
-	public boolean check; //ckeck xem co helper ko
+	public boolean check; //ckeck xem co helper ton tai khong
+	public boolean callHelper; // check xem co kha nang goi helper ko
+	public long time;	// sau 1 khoang time la co the goi duoc helper
 	
 	public Helper(){
 		init();
@@ -22,26 +24,31 @@ public class Helper extends AbstractObject {
 
 	public void init(){
 		helper = new Sprite(Assets.instance.helper);
-		helper.flip(true, false);
+		helper.setSize(80, helper.getHeight()/helper.getWidth()*80);
 		xPos = 0;
-		yPos = 300;
+		yPos = 500;
 		rand = 0;
 		check = false;
+		callHelper = false;
+		time = System.currentTimeMillis();
 	}
 
 	@Override
 	public void update() {
-		if (check == false){
-			if ( random.nextInt(3000) <= 10){
-				init();
-				check = true;
-			}
-		}else{
+		// check dieu kien de bat sang la co goi duoc helper ko
+		if(System.currentTimeMillis() -  time > 13000 ){
+			
+			callHelper =  true;
+			time =  System.currentTimeMillis();
+		}
+		if (check == true){	// neu no true thi chi don gian la cap nhat vi tri moi cho no
 			if ( helper.getX() > Gdx.graphics.getWidth() ){
 				check = false;
+				// cho no ve vi tri ban dau de cho doi
+				helper.setX(-5);
+				
 			}else{
-				xPos += 5;
-				helper.setPosition(xPos, yPos);
+				helper.setPosition(helper.getX() + 100*Gdx.graphics.getDeltaTime(), yPos);
 			}
 		}
 	}

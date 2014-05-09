@@ -8,7 +8,7 @@ import com.badlogic.gdx.tools.imagepacker.TexturePacker2.Settings;
 
 public class Main {
 	public static boolean rebuild = false;
-	public static boolean debug 	= true;
+	public static boolean debug 	= false;
 	public static void main(String[] args) {
 		
 		// day la phan tao ra file trong pack
@@ -26,8 +26,8 @@ public class Main {
 		LwjglApplicationConfiguration cfg = new LwjglApplicationConfiguration();
 		cfg.title = "crazyHelicopter";
 		cfg.useGL20 = false;
-		cfg.width = 800;
-		cfg.height = 600;
+		cfg.width = 1280;
+		cfg.height = 768;
 		
 		new LwjglApplication(new MainGame(), cfg);
 	}
