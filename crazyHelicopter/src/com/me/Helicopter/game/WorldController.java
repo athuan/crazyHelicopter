@@ -64,6 +64,7 @@ public class WorldController {
 	public Array<Rocket> rockets2;
 	public float speed;
 	public long rocketPressTime;
+	public Random rand;
 
 
 	public WorldController() { // khoi tao het cho bon no
@@ -87,6 +88,7 @@ public class WorldController {
 		cannons = new Array<Cannon>();
 		rockets1 = new Array<Rocket>();
 		rockets2 = new Array<Rocket>();
+		rand = new Random();
 		addCannon();
 
 
@@ -141,7 +143,8 @@ public class WorldController {
 		}
 
 		tankShotBullet();
-		CannonShotRocket();
+		//rocket
+		rocketUpdate();
 
 		for (Burn bu :burns){
 			if(bu.time <= 0 ){
@@ -229,15 +232,15 @@ public class WorldController {
 				}
 			}
 			// bomb collision with cannon
-			for (Cannon c : cannons) {
+			for (Cannon cn : cannons) {
 				if (bom.bomb.getBoundingRectangle().overlaps(
-						c.cannon.getBoundingRectangle())) {
+						cn.cannon.getBoundingRectangle())) {
 					addBurn(bom.bomb.getX(), bom.bomb.getY(), Assets.instance.fire);
 					bombs.removeValue(bom, true);
-					if(c.blood <= 0){
-						cannons.removeValue(c, true);
+					if(cn.blood <= 0){
+						cannons.removeValue(cn, true);
 					}else{
-						c.afterCollision();
+						cn.afterCollision();
 					}
 				}
 			}
@@ -251,19 +254,19 @@ public class WorldController {
 
 		}
 		
-		for (Rocket r : rockets1) {
-			if (r.rocket.getBoundingRectangle().overlaps(
+		for (Rocket rk : rockets1) {
+			if (rk.rocket.getBoundingRectangle().overlaps(
 					helicopter.heli.getBoundingRectangle())) {
 				
 				// sau khi dan mat thi xuat hien 1 dom lua
-				addBurn(r.rocket.getX(),r.rocket.getY(), Assets.instance.fire);
-				rockets1.removeValue(r, true);
+				addBurn(rk.rocket.getX(),rk.rocket.getY(), Assets.instance.fire);
+				rockets1.removeValue(rk, true);
 				helicopter.afterCollision();
 			}
-			if(r.rocket.getY() > 800){
-				rockets1.removeValue(r, true);
+			if(rk.rocket.getY() > 600 || rk.collision == true){
+				rockets1.removeValue(rk, true);
 			}else{
-				r.update();
+				rk.update();
 			}
 		}
 		
@@ -276,9 +279,8 @@ public class WorldController {
 			bird.update();
 		}
 
-		// collision rocket, cannon
-		rocketCollision();
-		cannonCollisionWithBomb();
+		
+		
 	}
 
 	public void tankShotBullet() {
@@ -302,28 +304,7 @@ public class WorldController {
 		}
 	}
 
-	public void CannonShotRocket() {
-		for (Cannon c : cannons) {
-			c.update();
-			if (c.shot()) { // tank chuan bi ban
-				if (!c.getShot()) { // Neu chua ban thi ban
-					BulletPressTime = System.currentTimeMillis();
-					c.setShot(true);
-					// Assets.instance.boomboom.play();
-					rocket = new Rocket(new Vector2(c.cannon.getX(),
-							c.cannon.getY()), new Vector2(
-							helicopter.heli.getX(), helicopter.heli.getY()));
-					rockets1.add(rocket);
-					rocket.setPosition(c.cannon.getX(), c.cannon.getY());
-				} else { // Neu ban roi va thoi gian ban vien truoc > timePress
-							// thi coi nhu la chua ban de ban
-					if (System.currentTimeMillis() - BulletPressTime >= timePress) {
-						c.setShot(false);
-					}
-				}
-			}
-		}
-	}
+	
 	
 	// sau khi va cham se xuat hien sprite o vi tri (posX, posY) 
 	public void addBurn(float posX, float posY, Sprite sprite){
@@ -358,96 +339,36 @@ public class WorldController {
 	}
 
 	// rocket
-	public void rocketUpdate() {
+		public void rocketUpdate() {
 		Rocket rocket;
 		for (Cannon cn : cannons) {
-			if (cn.shot()) {
-				if (!cn.getShot()) {
-					rocketPressTime = System.currentTimeMillis();
-					cn.setShot(true);
-					if (cn.cannon.getX() < helicopter.heli.getX()) {
-						if (cn.getBlood() > 0 /* && helicopter.blood > 0 */) {
-							cn.cannon.flip(false, false);
-							rocket = new Rocket(45);
-							rockets1.add(rocket);
-							System.out.println("So luong rockets1" + rockets1.size);
-							rocket.setPosition(cn.cannon.getX() + 15,
-									cn.cannon.getY() + 50);
-						}
-					}
-					if (cn.cannon.getX() > helicopter.heli.getX()) {
-						if (cn.getBlood() > 0 /* && helicopter.blood > 0 */) {
-							cn.cannon.flip(true, false);
-							rocket = new Rocket(-45);
-							rockets2.add(rocket);
-							rocket.setPosition(cn.cannon.getX(),
-									cn.cannon.getY() + 50);
-						}
-					}
+			if (rand.nextInt(1000) < 10) {
+				if (cn.getBlood() > 0  && helicopter.blood > 0 ) {
+					Vector2 pos = new Vector2();
+					pos.set(cn.cannon.getX(), cn.cannon.getY());
+					Vector2 des = new Vector2();
+					des.set(helicopter.heli.getX(), helicopter.heli.getY());
+					rocket = new Rocket(pos, des);
+					rocket.setPosition(cn.cannon.getX() + 15,
+							cn.cannon.getY() + 50);
+					rockets1.add(rocket);
 				}
-				// }
-			} else {
-				if (System.currentTimeMillis() - rocketPressTime >= timePress) {
-					cn.setShot(false);
+				if (cn.cannon.getX() < helicopter.heli.getX()) {
+					cn.cannon.flip(false, false);
 				}
-			}
-			for (Rocket rk : rockets1) {
-				rk.update(speed);
-				if (rk.rocket.getY() > 600) {
-					rockets1.removeValue(rk, true);
-				}
-
-			}
-			for (Rocket rk : rockets2) {
-				rk.update(-speed);
-				if (rk.getX() == helicopter.heli.getX()) {
-					// System.out.println("vi tri la day");
-				}
-				if (rk.rocket.getY() > 600) {
-					rockets2.removeValue(rk, true);
+				if (cn.cannon.getX() > helicopter.heli.getX()) {
+					cn.cannon.flip(true, false);
 				}
 			}
 
 		}
-	}
-
-	// check collision rocket
-	public void rocketCollision() {
 		for (Rocket rk : rockets1) {
-			if (rk.rocket.getBoundingRectangle().overlaps(
-					helicopter.heli.getBoundingRectangle())) {
-				rk.afterCollision();
-				break;
-			} else {
-				continue;
+			rk.update(speed);
+			if (rk.getY() > 600 || rk.collision == true) {
+				rockets1.removeValue(rk, true);
 			}
-		}
-		for (Rocket rk : rockets2) {
-			if (rk.rocket.getBoundingRectangle().overlaps(
-					helicopter.heli.getBoundingRectangle())) {
-				rk.afterCollision();
-				break;
-			} else {
-				continue;
-			}
+			
 		}
 	}
-
-	public void cannonCollisionWithBomb() {
-		for (Bomb bomb : bombs) {
-			for (Cannon ca : cannons) {
-				if (bomb.bomb.getBoundingRectangle().overlaps(
-						ca.cannon.getBoundingRectangle())) {
-					bomb.afterCollision();
-					ca.afterCollision();
-					System.out.println(ca.blood);
-				} else {
-					continue;
-				}
-
-			}
-		}
-	}
-
 
 }
